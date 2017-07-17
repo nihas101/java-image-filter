@@ -1,15 +1,11 @@
 package pictureFilter;
 
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import pictureFilter.filters.Filter;
+import pictureFilter.filters.FilterFactory;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -23,9 +19,8 @@ import static java.nio.file.Files.*;
 import static java.nio.file.Paths.get;
 import static javax.imageio.ImageIO.write;
 
-public class PictureFilterer extends Application{
+public class PictureFilter{
 
-    /* Function for interface-less actions */
     public void applyFilter(String[] args) throws FileNotFoundException {
         Path imagePath;
         Image image = null;
@@ -45,13 +40,11 @@ public class PictureFilterer extends Application{
         if( !exists(get(fileArg)) && !isDirectory(get(fileArg)) )
             throw new FileNotFoundException("The File " + args[0] + " was not found or is a directory");
 
-        /* Load the image and create the PixelReader instance */
-        out.println(fileArg);
+        /* Load the image */
         image = new Image("file:" + fileArg);
 
         format = getImageFormat(imagePath);
         format = format.substring(format.indexOf("/")+1);
-        System.out.println(format);
 
         /* Create WritableImage */
         writableImage = new WritableImage((int)image.getWidth(), (int)image.getHeight());
@@ -73,8 +66,6 @@ public class PictureFilterer extends Application{
 
         if(!write) out.println("Saving the image failed");
         else out.println("Image saved under: " + newFileName);
-
-        Platform.exit();
     }
 
     /**
@@ -89,26 +80,10 @@ public class PictureFilterer extends Application{
         return "";
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
-        Pane pane = loader.load();
-
-        primaryStage.setTitle("PictureFilterer");
-        primaryStage.setScene(new Scene(pane));
-
-        primaryStage.show();
-    }
-
     public static void main(String[] args) throws IOException {
-        if(args.length < 1){
-            launch(args);
-        }
-        else {
         /* Init javafx core */
-            final JFXPanel fxPanel = new JFXPanel();
-            new PictureFilterer().applyFilter(args);
-        }
+        final JFXPanel fxPanel = new JFXPanel();
+        new PictureFilter().applyFilter(args);
     }
 
     /* TODO: fix ImageIO.write bug on jpg pictures, add more filters, add a save button, adjust size of imageview with pictures, mabe instead of chooser drop down menu? etc*/

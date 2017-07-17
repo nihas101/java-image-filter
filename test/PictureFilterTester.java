@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
-import pictureFilter.PictureFilterer;
+import pictureFilter.PictureFilter;
+import pictureFilter.PictureFilterGUI;
 
 import java.io.IOException;
 
@@ -8,7 +9,7 @@ public class PictureFilterTester {
     void bwTester_IL(){
         String[] args = {"D:/Nikita/Pictures/josuke.png", "bw"};
         try {
-            PictureFilterer.main(args);
+            PictureFilter.main(args);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -17,7 +18,7 @@ public class PictureFilterTester {
     @Test
     void bwTester() {
         try {
-            PictureFilterer.main(new String[0]);
+            PictureFilterGUI.main(new String[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }

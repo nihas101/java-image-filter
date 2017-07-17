@@ -28,7 +28,7 @@ public class FilterFactory {
     private void addAllFilters(){
         Filter bwFilter = new Grayscale_Filter();
         Filter blurFilter3x3 = new BlurFilter3x3();
-        //Filter blurFilter5x5 = new BlurFilter5X5();
+        Filter blurFilter5x5 = new BlurFilter5X5();
         Filter motionBlurFilterDiag3x3 = new MotionBlurFilterDiag3x3();
         //Filter motionBlurFilterDiag5x5 = new MotionBlurFilterDiag5x5();
 
@@ -42,7 +42,7 @@ public class FilterFactory {
 
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
         this.filterHashMap.put(blurFilter3x3.getFilterName().toLowerCase(),  blurFilter3x3);
-        //this.filterHashMap.put(blurFilter5x5.getFilterName().toLowerCase(), blurFilter5x5);
+        this.filterHashMap.put(blurFilter5x5.getFilterName().toLowerCase(), blurFilter5x5);
         this.filterHashMap.put(motionBlurFilterDiag3x3.getFilterName().toLowerCase(), motionBlurFilterDiag3x3);
 
         this.filterHashMap.put(mhFilter.getFilterName().toLowerCase(), mhFilter);

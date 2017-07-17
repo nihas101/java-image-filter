@@ -28,7 +28,6 @@ public class BlurFilter5X5 extends PixelIterator5x5 implements Filter {
                     pixelWriter.setColor(x, y, color);
                 },
                 (x, y) ->{
-                    System.out.println(x.length);
                     /* Get colors of neighbours for blur calculations */
                     Color color1 = pixelReader.getColor(x[2],y[2]);
                     Color color2 = pixelReader.getColor(x[7],y[7]);

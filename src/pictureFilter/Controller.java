@@ -86,7 +86,7 @@ public class Controller implements Initializable {
 
         filters.sort(CASE_INSENSITIVE_ORDER);
 
-        System.out.println("Possible filters: " + filters.toString());
+        //System.out.println("Possible filters: " + filters.toString());
 
         filterPicker.setItems( observableArrayList(filters) );
 

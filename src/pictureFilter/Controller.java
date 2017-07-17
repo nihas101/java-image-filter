@@ -1,16 +1,17 @@
 package pictureFilter;
 
-import javafx.collections.FXCollections;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
+import pictureFilter.filters.Filter;
 import pictureFilter.filters.FilterFactory;
 
 import javax.imageio.ImageIO;
@@ -24,8 +25,13 @@ import java.util.ResourceBundle;
 
 import static java.lang.String.CASE_INSENSITIVE_ORDER;
 import static javafx.collections.FXCollections.observableArrayList;
+import static pictureFilter.PictureFilter.getImageFormat;
 
 public class Controller implements Initializable {
+    @FXML
+    private TextField pathTextField;
+    @FXML
+    public Button saveButton;
     @FXML
     private ImageView beforeImageView;
     @FXML
@@ -38,6 +44,9 @@ public class Controller implements Initializable {
     private Image image;
     private WritableImage writableImage;
     private static FilterFactory filterFactory = new FilterFactory(new HashMap<>());
+    private Filter filter;
+    private String format;
+    private PictureFilter pictureFilter;
 
     public void openFileManager(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -49,25 +58,27 @@ public class Controller implements Initializable {
 
         File file = fileChooser.showOpenDialog(null);
 
+
         if(file != null){
             try {bufferedImage = ImageIO.read(file); }
             catch (IOException e) { e.printStackTrace(); }
-        }
+        }else return;
 
         if(bufferedImage != null){
             image = SwingFXUtils.toFXImage(bufferedImage, null);
             beforeImageView.setImage(image);
-        }
+        }else return;
+
+        format = pictureFilter.getFormat(file.toPath());
+
+        pathTextField.setText(file.getAbsolutePath());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         ArrayList<String> filters = new ArrayList<>();
 
-        filterFactory.getFilters().forEach((filter) ->{
-            filters.add(filter.getFilterName());
-        });
+        filterFactory.getFilters().forEach( filter -> filters.add(filter.getFilterName()) );
 
         filters.sort(CASE_INSENSITIVE_ORDER);
 
@@ -79,8 +90,15 @@ public class Controller implements Initializable {
             if(image == null) return;
             /* Apply filter and display */
             writableImage = new WritableImage((int)image.getWidth(), (int)image.getHeight());
-            filterFactory.getFilter(newValue.toString()).applyFilter(image, writableImage);
+            filter = filterFactory.getFilter(newValue.toString());
+            filter.applyFilter(image, writableImage);
             afterImageView.setImage(writableImage);
         });
+
+        pictureFilter = new PictureFilter();
+    }
+
+    public void writeImageToDisk(ActionEvent actionEvent) {
+        pictureFilter.writeImageToDisk(pathTextField.getText().trim(), writableImage, format, "");
     }
 }

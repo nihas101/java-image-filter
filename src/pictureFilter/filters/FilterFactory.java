@@ -43,7 +43,5 @@ public class FilterFactory {
         this.filterHashMap.put(mhtFilter.getFilterName().toLowerCase(), mhtFilter);
     }
 
-    public Collection<Filter> getFilters(){
-        return this.filterHashMap.values();
-    }
+    public Collection<Filter> getFilters(){ return this.filterHashMap.values(); }
 }

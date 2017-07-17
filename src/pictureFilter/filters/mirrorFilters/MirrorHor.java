@@ -31,7 +31,5 @@ public class MirrorHor extends PixelIterator implements Filter {
     }
 
     @Override
-    public String getFilterName() {
-        return "mh";
-    }
+    public String getFilterName() { return "mh"; }
 }

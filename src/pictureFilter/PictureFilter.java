@@ -41,13 +41,11 @@ public class PictureFilter{
 
         image = loadImage(fileArg, imagePath);
 
-        // TODO: display image, then ask if you want to save it
-
         FilterFactory filterFactory = new FilterFactory(new HashMap<>());
         Filter filter = filterFactory.getFilter(filterArg);
         Image newImage = applyFilter(filter, image);
 
-        writeImageToDisk(fileArg, newImage, filter);
+        writeImageToDisk(fileArg, newImage, format, "_" + filter.getFilterName());
     }
 
     /**
@@ -66,9 +64,13 @@ public class PictureFilter{
         /* Load the image */
         Image image = new Image("file:" + fileArg);
         /* Extract format */
-        format = getImageFormat(imagePath);
-        format = format.substring(format.indexOf("/")+1);
+        format = getFormat(imagePath);
         return image;
+    }
+
+    public String getFormat(Path imagePath){
+        format = getImageFormat(imagePath);
+        return format.substring(format.indexOf("/")+1);
     }
 
     public Image applyFilter(Filter filter, Image image){
@@ -80,11 +82,11 @@ public class PictureFilter{
         return writableImage;
     }
 
-    public void writeImageToDisk(String fileArg, Image image, Filter filter){
+    public void writeImageToDisk(String fileArg, Image image, String format, String fileNameAddition){
         boolean write = false;
 
         /* Write the image */
-        String newFileName = fileArg.substring(0, fileArg.indexOf(".")) + "_" +  filter.getFilterName()
+        String newFileName = fileArg.substring(0, fileArg.indexOf(".")) + fileNameAddition
                 + fileArg.substring(fileArg.indexOf("."));
 
         File file = new File(newFileName);
@@ -98,5 +100,5 @@ public class PictureFilter{
         else out.println("Image saved under: " + newFileName);
     }
 
-    /* TODO: fix ImageIO.write bug on jpg pictures, add more filters, add a save button, adjust size of imageview with pictures, maybe instead of chooser drop down menu? etc*/
+    /* TODO: fix ImageIO.write bug on jpg pictures, add more filters, adjust size of imageview with pictures, maybe instead of chooser drop down menu? etc*/
 }

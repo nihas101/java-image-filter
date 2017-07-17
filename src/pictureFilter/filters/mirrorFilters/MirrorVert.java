@@ -31,7 +31,5 @@ public class MirrorVert extends PixelIterator implements Filter{
     }
 
     @Override
-    public String getFilterName() {
-        return "mv";
-    }
+    public String getFilterName() { return "mv"; }
 }

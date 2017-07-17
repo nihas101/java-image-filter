@@ -142,7 +142,7 @@ public class PictureFilterTester {
     void mvrTester_IL(){
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
         filterFactory.getFilter("mvr").applyFilter(image, writableImage);
-        
+
         PixelReader nPixelReader = writableImage.getPixelReader();
 
         for(int y=0 ; y < imageHeight ; y++) {

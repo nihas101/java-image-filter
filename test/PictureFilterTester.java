@@ -25,6 +25,7 @@ public class PictureFilterTester {
     private static FilterFactory filterFactory = new FilterFactory(new HashMap<>());
     private static Image image;
     private static double imageHeight, imageWidth;
+    double eps = .01;
 
     @Test
     void bwTester_IL() throws Exception {
@@ -41,7 +42,6 @@ public class PictureFilterTester {
 
                 double grey = oColor.getRed()*.3 + oColor.getBlue()*.59 + oColor.getGreen()*.11;
 
-                double eps = .01;
                 assertEquals(grey, nColor.getRed(), eps);
                 assertEquals(grey, nColor.getBlue(), eps);
                 assertEquals(grey, nColor.getGreen(), eps);
@@ -156,6 +156,42 @@ public class PictureFilterTester {
     }
 
     @Test
+    void blurTester_IL(){
+        WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
+        filterFactory.getFilter("blur").applyFilter(image, writableImage);
+
+        PixelReader oPixelReader = image.getPixelReader();
+        PixelReader nPixelReader = writableImage.getPixelReader();
+
+        for(int y=0 ; y < imageHeight ; y++) {
+            for (int x = 0; x < imageWidth; x++)  {
+                Color color1 = oPixelReader.getColor(x,y);
+                /* Edgecase just copy the color */
+                if(x<=0 || x>=imageWidth-1 || y<=0 || y>=imageHeight-1){
+                    assertEquals(color1, nPixelReader.getColor(x,y));
+                }else {
+                    /* Get colors of neighbours for blur calculations */
+                    Color color2 = oPixelReader.getColor(x - 1, y);
+                    Color color3 = oPixelReader.getColor(x + 1, y);
+                    Color color4 = oPixelReader.getColor(x, y - 1);
+                    Color color5 = oPixelReader.getColor(x, y + 1);
+
+                    /* Compare colors */
+                    double red = color1.getRed() + color2.getRed() + color3.getRed() + color4.getRed() + color5.getRed();
+                    double blue = color1.getBlue() + color2.getBlue() + color3.getBlue() + color4.getBlue() + color5.getBlue();
+                    double green = color1.getGreen() + color2.getGreen() + color3.getGreen() + color4.getGreen() + color5.getGreen();
+
+                    Color color = nPixelReader.getColor(x, y);
+
+                    assertEquals(color.getRed(), red * .2, eps);
+                    assertEquals(color.getBlue(), blue * .2, eps);
+                    assertEquals(color.getGreen(), green * .2, eps);
+                }
+            }
+        }
+    }
+
+    @Test
     void GUI_Tester() {
         try {
             PictureFilterGUI.main(new String[0]);
@@ -167,11 +203,9 @@ public class PictureFilterTester {
     @BeforeAll
     static void initFX() throws InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new JFXPanel(); // initializes JavaFX environment
-                latch.countDown();
-            }
+        SwingUtilities.invokeLater(() -> {
+            new JFXPanel(); // initializes JavaFX environment
+            latch.countDown();
         });
         latch.await();
 

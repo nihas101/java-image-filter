@@ -7,7 +7,6 @@ import javafx.scene.image.WritableImage;
 import pictureFilter.filters.Filter;
 import pictureFilter.filters.FilterFactory;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,52 +19,33 @@ import static java.nio.file.Paths.get;
 import static javax.imageio.ImageIO.write;
 
 public class PictureFilter{
+    private String format;
 
-    public void applyFilter(String[] args) throws FileNotFoundException {
-        Path imagePath;
-        Image image = null;
-        String fileArg, filterArg, format;
-        WritableImage writableImage = null;
-        BufferedImage bufferedImage = null;
-        FilterFactory filterFactory = new FilterFactory(new HashMap<>());
-        boolean write = false;
+    public static void main(String[] args) throws IOException {
+        /* Init javafx core */
+        new JFXPanel();
+        new PictureFilter().applyFilter(args);
+    }
 
+    private void applyFilter(String[] args) throws FileNotFoundException {
         if(args.length < 2) throw new Error("Not enough Arguments...");
 
-        fileArg = args[0];
-        filterArg = args[1];
+        String fileArg = args[0];
+        String filterArg = args[1];
+        Image image;
 
         /* Check if file exists */
-        imagePath = get(fileArg);
+        Path imagePath = get(fileArg);
         if( !exists(get(fileArg)) && !isDirectory(get(fileArg)) )
             throw new FileNotFoundException("The File " + args[0] + " was not found or is a directory");
 
-        /* Load the image */
-        image = new Image("file:" + fileArg);
+        image = loadImage(fileArg, imagePath);
 
-        format = getImageFormat(imagePath);
-        format = format.substring(format.indexOf("/")+1);
-
-        /* Create WritableImage */
-        writableImage = new WritableImage((int)image.getWidth(), (int)image.getHeight());
-
-        /* Create and apply the filter */
+        FilterFactory filterFactory = new FilterFactory(new HashMap<>());
         Filter filter = filterFactory.getFilter(filterArg);
-        filter.apply(image, writableImage);
+        Image newImage = applyFilterToPicture(filter, image);
 
-        /* Write the image */
-        String newFileName = fileArg.substring(0, fileArg.indexOf(".")) + "_" +  filter.getFilterName()
-                + fileArg.substring(fileArg.indexOf("."));
-
-        File file = new File(newFileName);
-        try {
-            write = write(SwingFXUtils.fromFXImage(writableImage, null), format, file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if(!write) out.println("Saving the image failed");
-        else out.println("Image saved under: " + newFileName);
+        writeImageToDisk(fileArg, newImage, filter);
     }
 
     /**
@@ -80,11 +60,41 @@ public class PictureFilter{
         return "";
     }
 
-    public static void main(String[] args) throws IOException {
-        /* Init javafx core */
-        final JFXPanel fxPanel = new JFXPanel();
-        new PictureFilter().applyFilter(args);
+    private Image loadImage(String fileArg, Path imagePath){
+        /* Load the image */
+        Image image = new Image("file:" + fileArg);
+        /* Extract format */
+        format = getImageFormat(imagePath);
+        format = format.substring(format.indexOf("/")+1);
+        return image;
     }
 
-    /* TODO: fix ImageIO.write bug on jpg pictures, add more filters, add a save button, adjust size of imageview with pictures, mabe instead of chooser drop down menu? etc*/
+    private Image applyFilterToPicture(Filter filter, Image image){
+        /* Create WritableImage */
+        WritableImage writableImage = new WritableImage((int) image.getWidth(), (int) image.getHeight());
+
+        /* Create and apply the filter */
+        filter.applyFilter(image, writableImage);
+        return writableImage;
+    }
+
+    private void writeImageToDisk(String fileArg, Image image, Filter filter){
+        boolean write = false;
+
+        /* Write the image */
+        String newFileName = fileArg.substring(0, fileArg.indexOf(".")) + "_" +  filter.getFilterName()
+                + fileArg.substring(fileArg.indexOf("."));
+
+        File file = new File(newFileName);
+        try {
+            write = write(SwingFXUtils.fromFXImage(image, null), format, file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(!write) out.println("Saving the image failed");
+        else out.println("Image saved under: " + newFileName);
+    }
+
+    /* TODO: fix ImageIO.write bug on jpg pictures, add more filters, add a save button, adjust size of imageview with pictures, maybe instead of chooser drop down menu? etc*/
 }

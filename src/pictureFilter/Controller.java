@@ -64,7 +64,7 @@ public class Controller implements Initializable {
             if(image == null) return;
             /* Apply filter and display */
             writableImage = new WritableImage((int)image.getWidth(), (int)image.getHeight());
-            filterFactory.getFilter(newValue.toString()).apply(image, writableImage);
+            filterFactory.getFilter(newValue.toString()).applyFilter(image, writableImage);
             afterImageView.setImage(writableImage);
         });
     }

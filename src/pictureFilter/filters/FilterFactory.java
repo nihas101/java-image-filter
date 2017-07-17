@@ -1,5 +1,10 @@
 package pictureFilter.filters;
 
+import pictureFilter.filters.mirrorFilters.MirrorHorBottom;
+import pictureFilter.filters.mirrorFilters.MirrorHorTop;
+import pictureFilter.filters.mirrorFilters.MirrorVertLeft;
+import pictureFilter.filters.mirrorFilters.MirrorVertRight;
+
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -24,11 +29,15 @@ public class FilterFactory {
         Filter testFilter = new TestFilter();
         Filter mvlFilter = new MirrorVertLeft();
         Filter mvrFilter = new MirrorVertRight();
+        Filter mhbFilter = new MirrorHorBottom();
+        Filter mhtFilter = new MirrorHorTop();
 
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
         this.filterHashMap.put(testFilter.getFilterName().toLowerCase(), testFilter);
         this.filterHashMap.put(mvlFilter.getFilterName().toLowerCase(), mvlFilter);
         this.filterHashMap.put(mvrFilter.getFilterName().toLowerCase(), mvrFilter);
+        this.filterHashMap.put(mhbFilter.getFilterName().toLowerCase(), mhbFilter);
+        this.filterHashMap.put(mhtFilter.getFilterName().toLowerCase(), mhtFilter);
     }
 
     public Collection<Filter> getFilters(){

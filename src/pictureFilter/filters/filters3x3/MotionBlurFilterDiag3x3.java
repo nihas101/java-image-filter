@@ -60,6 +60,6 @@ public class MotionBlurFilterDiag3x3 extends PixelIterator3x3 implements Filter 
 
     @Override
     public String getFilterName() {
-        return "motionblur_diag";
+        return "motionblurDiag";
     }
 }

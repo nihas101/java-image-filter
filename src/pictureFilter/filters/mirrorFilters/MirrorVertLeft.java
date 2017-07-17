@@ -31,6 +31,6 @@ public class MirrorVertLeft extends PixelIterator implements Filter {
 
     @Override
     public String getFilterName() {
-        return "mvl";
+        return "mirrorVerticalLeft";
     }
 }

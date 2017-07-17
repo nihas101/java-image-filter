@@ -30,7 +30,7 @@ public class PictureFilterTester {
     @Test
     void bwTester_IL() throws Exception {
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("bw").applyFilter(image, writableImage);
+        filterFactory.getFilter("grayScale").applyFilter(image, writableImage);
 
         PixelReader oPixelReader = image.getPixelReader();
         PixelReader nPixelReader = writableImage.getPixelReader();
@@ -52,7 +52,7 @@ public class PictureFilterTester {
     @Test
     void mhTester_IL() throws Exception {
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("mh").applyFilter(image, writableImage);
+        filterFactory.getFilter("mirrorHorizontal").applyFilter(image, writableImage);
 
         PixelReader oPixelReader = image.getPixelReader();
         PixelReader nPixelReader = writableImage.getPixelReader();
@@ -70,9 +70,8 @@ public class PictureFilterTester {
     @Test
     void mhbTester_IL(){
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("mhb").applyFilter(image, writableImage);
+        filterFactory.getFilter("mirrorHorizontalBottom").applyFilter(image, writableImage);
 
-        PixelReader oPixelReader = image.getPixelReader();
         PixelReader nPixelReader = writableImage.getPixelReader();
 
         for(int x=0 ; x < imageWidth ; x++) {
@@ -88,7 +87,7 @@ public class PictureFilterTester {
     @Test
     void mhtTester_IL(){
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("mht").applyFilter(image, writableImage);
+        filterFactory.getFilter("mirrorHorizontalTop").applyFilter(image, writableImage);
 
         PixelReader oPixelReader = image.getPixelReader();
         PixelReader nPixelReader = writableImage.getPixelReader();
@@ -106,7 +105,7 @@ public class PictureFilterTester {
     @Test
     void mvTester_IL(){
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("mv").applyFilter(image, writableImage);
+        filterFactory.getFilter("mirrorVertical").applyFilter(image, writableImage);
 
         PixelReader oPixelReader = image.getPixelReader();
         PixelReader nPixelReader = writableImage.getPixelReader();
@@ -124,7 +123,7 @@ public class PictureFilterTester {
     @Test
     void mvlTester_IL(){
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("mvl").applyFilter(image, writableImage);
+        filterFactory.getFilter("mirrorVerticalLeft").applyFilter(image, writableImage);
 
         PixelReader nPixelReader = writableImage.getPixelReader();
 
@@ -141,7 +140,7 @@ public class PictureFilterTester {
     @Test
     void mvrTester_IL(){
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("mvr").applyFilter(image, writableImage);
+        filterFactory.getFilter("mirrorVerticalRight").applyFilter(image, writableImage);
 
         PixelReader nPixelReader = writableImage.getPixelReader();
 
@@ -194,7 +193,7 @@ public class PictureFilterTester {
     @Test
     void mblurTester_IL(){
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("motionblur_diag").applyFilter(image, writableImage);
+        filterFactory.getFilter("motionblurDiag").applyFilter(image, writableImage);
 
         PixelReader oPixelReader = image.getPixelReader();
         PixelReader nPixelReader = writableImage.getPixelReader();

@@ -30,6 +30,6 @@ public class MirrorHorTop extends PixelIterator implements Filter {
 
     @Override
     public String getFilterName() {
-        return "mht";
+        return "mirrorHorizontalTop";
     }
 }

@@ -35,5 +35,5 @@ public class Grayscale_Filter extends PixelIterator implements Filter {
     }
 
     @Override
-    public String getFilterName() { return "bw"; }
+    public String getFilterName() { return "grayScale"; }
 }

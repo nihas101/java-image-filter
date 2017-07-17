@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import static java.lang.String.CASE_INSENSITIVE_ORDER;
+import static javafx.collections.FXCollections.observableArrayList;
+
 public class Controller implements Initializable {
     @FXML
     private ImageView beforeImageView;
@@ -66,11 +69,11 @@ public class Controller implements Initializable {
             filters.add(filter.getFilterName());
         });
 
-        filters.sort(String.CASE_INSENSITIVE_ORDER);
+        filters.sort(CASE_INSENSITIVE_ORDER);
 
         System.out.println("Possible filters: " + filters.toString());
 
-        filterPicker.setItems( FXCollections.observableArrayList(filters) );
+        filterPicker.setItems( observableArrayList(filters) );
 
         filterPicker.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(image == null) return;

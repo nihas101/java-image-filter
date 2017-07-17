@@ -1,9 +1,6 @@
 package pictureFilter.filters;
 
-import pictureFilter.filters.mirrorFilters.MirrorHorBottom;
-import pictureFilter.filters.mirrorFilters.MirrorHorTop;
-import pictureFilter.filters.mirrorFilters.MirrorVertLeft;
-import pictureFilter.filters.mirrorFilters.MirrorVertRight;
+import pictureFilter.filters.mirrorFilters.*;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -27,6 +24,10 @@ public class FilterFactory {
     private void addAllFilters(){
         Filter bwFilter = new Grayscale_Filter();
         Filter testFilter = new TestFilter();
+
+        Filter mhFilter = new MirrorHor();
+        Filter mvFilter = new MirrorVert();
+
         Filter mvlFilter = new MirrorVertLeft();
         Filter mvrFilter = new MirrorVertRight();
         Filter mhbFilter = new MirrorHorBottom();
@@ -34,6 +35,10 @@ public class FilterFactory {
 
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
         this.filterHashMap.put(testFilter.getFilterName().toLowerCase(), testFilter);
+
+        this.filterHashMap.put(mhFilter.getFilterName().toLowerCase(), mhFilter);
+        this.filterHashMap.put(mvFilter.getFilterName().toLowerCase(), mvFilter);
+
         this.filterHashMap.put(mvlFilter.getFilterName().toLowerCase(), mvlFilter);
         this.filterHashMap.put(mvrFilter.getFilterName().toLowerCase(), mvrFilter);
         this.filterHashMap.put(mhbFilter.getFilterName().toLowerCase(), mhbFilter);

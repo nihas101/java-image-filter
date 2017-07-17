@@ -18,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -58,7 +59,18 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        filterPicker.setItems( FXCollections.observableArrayList("bw", "test") );
+
+        ArrayList<String> filters = new ArrayList<>();
+
+        filterFactory.getFilters().forEach((filter) ->{
+            filters.add(filter.getFilterName());
+        });
+
+        filters.sort(String.CASE_INSENSITIVE_ORDER);
+
+        System.out.println("Possible filters: " + filters.toString());
+
+        filterPicker.setItems( FXCollections.observableArrayList(filters) );
 
         filterPicker.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(image == null) return;

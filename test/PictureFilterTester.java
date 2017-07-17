@@ -192,6 +192,40 @@ public class PictureFilterTester {
     }
 
     @Test
+    void mblurTester_IL(){
+        WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
+        filterFactory.getFilter("motionblur_diag").applyFilter(image, writableImage);
+
+        PixelReader oPixelReader = image.getPixelReader();
+        PixelReader nPixelReader = writableImage.getPixelReader();
+
+        for(int y=0 ; y < imageHeight ; y++) {
+            for (int x = 0; x < imageWidth; x++)  {
+                Color color1 = oPixelReader.getColor(x,y);
+                /* Edgecase just copy the color */
+                if(x<=0 || x>=imageWidth-1 || y<=0 || y>=imageHeight-1){
+                    assertEquals(color1, nPixelReader.getColor(x,y));
+                }else {
+                    /* Get colors of neighbours for blur calculations */
+                    Color color2 = oPixelReader.getColor(x - 1, y - 1);
+                    Color color3 = oPixelReader.getColor(x + 1, y + 1);
+
+                    /* Compare colors */
+                    double red = color1.getRed() + color2.getRed() + color3.getRed();
+                    double blue = color1.getBlue() + color2.getBlue() + color3.getBlue();
+                    double green = color1.getGreen() + color2.getGreen() + color3.getGreen();
+
+                    Color color = nPixelReader.getColor(x, y);
+
+                    assertEquals(color.getRed(), red/3, eps);
+                    assertEquals(color.getBlue(), blue/3, eps);
+                    assertEquals(color.getGreen(), green/3, eps);
+                }
+            }
+        }
+    }
+
+    @Test
     void GUI_Tester() {
         try {
             PictureFilterGUI.main(new String[0]);

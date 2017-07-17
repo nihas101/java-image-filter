@@ -23,7 +23,8 @@ public class FilterFactory {
 
     private void addAllFilters(){
         Filter bwFilter = new Grayscale_Filter();
-        Filter blurFilter = new BlurFilter5x5();
+        Filter blurFilter = new BlurFilter3x3();
+        Filter motionblurFilter = new MotionBlurFilterDiag3x3();
 
         Filter mhFilter = new MirrorHor();
         Filter mvFilter = new MirrorVert();
@@ -35,6 +36,7 @@ public class FilterFactory {
 
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
         this.filterHashMap.put(blurFilter.getFilterName().toLowerCase(),  blurFilter);
+        this.filterHashMap.put(motionblurFilter.getFilterName().toLowerCase(), motionblurFilter);
 
         this.filterHashMap.put(mhFilter.getFilterName().toLowerCase(), mhFilter);
         this.filterHashMap.put(mvFilter.getFilterName().toLowerCase(), mvFilter);

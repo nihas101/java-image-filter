@@ -1,6 +1,6 @@
 package pictureFilter.filters;
 
-public class PixelIterator {
+public abstract class PixelIterator {
     public void rowWise(double imageHeight, double imageWidth, PixelByPixelFilter pixelByPixelFilter){
         for(int y=0 ; y < imageHeight ; y++) {
             for (int x = 0; x < imageWidth; x++) {

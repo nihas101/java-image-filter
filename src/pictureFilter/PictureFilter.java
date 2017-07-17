@@ -24,10 +24,10 @@ public class PictureFilter{
     public static void main(String[] args) throws IOException {
         /* Init javafx core */
         new JFXPanel();
-        new PictureFilter().applyFilter(args);
+        new PictureFilter().filterImage(args);
     }
 
-    private void applyFilter(String[] args) throws FileNotFoundException {
+    public void filterImage(String[] args) throws FileNotFoundException {
         if(args.length < 2) throw new Error("Not enough Arguments...");
 
         String fileArg = args[0];
@@ -43,7 +43,7 @@ public class PictureFilter{
 
         FilterFactory filterFactory = new FilterFactory(new HashMap<>());
         Filter filter = filterFactory.getFilter(filterArg);
-        Image newImage = applyFilterToPicture(filter, image);
+        Image newImage = applyFilter(filter, image);
 
         writeImageToDisk(fileArg, newImage, filter);
     }
@@ -53,14 +53,14 @@ public class PictureFilter{
      * @param path The path to the image
      * @return The images format
      */
-    private static String getImageFormat(Path path){
+    public static String getImageFormat(Path path){
         try { return probeContentType(path); }
         catch (IOException e) { e.printStackTrace(); }
 
         return "";
     }
 
-    private Image loadImage(String fileArg, Path imagePath){
+    public Image loadImage(String fileArg, Path imagePath){
         /* Load the image */
         Image image = new Image("file:" + fileArg);
         /* Extract format */
@@ -69,7 +69,7 @@ public class PictureFilter{
         return image;
     }
 
-    private Image applyFilterToPicture(Filter filter, Image image){
+    public Image applyFilter(Filter filter, Image image){
         /* Create WritableImage */
         WritableImage writableImage = new WritableImage((int) image.getWidth(), (int) image.getHeight());
 
@@ -78,7 +78,7 @@ public class PictureFilter{
         return writableImage;
     }
 
-    private void writeImageToDisk(String fileArg, Image image, Filter filter){
+    public void writeImageToDisk(String fileArg, Image image, Filter filter){
         boolean write = false;
 
         /* Write the image */

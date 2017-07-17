@@ -175,7 +175,7 @@ public class PictureFilterTester {
         });
         latch.await();
 
-        String resource = "testresources/feelOfBlank.jpg";
+        String resource = "testresources/feelOfBlank.png";
         image = pictureFilter.loadImage(resource, Paths.get(resource));
         imageHeight = image.getHeight();
         imageWidth = image.getWidth();

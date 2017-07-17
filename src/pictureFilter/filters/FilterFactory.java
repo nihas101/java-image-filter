@@ -23,7 +23,6 @@ public class FilterFactory {
 
     private void addAllFilters(){
         Filter bwFilter = new Grayscale_Filter();
-        Filter testFilter = new TestFilter();
 
         Filter mhFilter = new MirrorHor();
         Filter mvFilter = new MirrorVert();
@@ -34,7 +33,6 @@ public class FilterFactory {
         Filter mhtFilter = new MirrorHorTop();
 
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
-        this.filterHashMap.put(testFilter.getFilterName().toLowerCase(), testFilter);
 
         this.filterHashMap.put(mhFilter.getFilterName().toLowerCase(), mhFilter);
         this.filterHashMap.put(mvFilter.getFilterName().toLowerCase(), mvFilter);

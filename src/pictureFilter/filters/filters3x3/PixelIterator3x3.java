@@ -1,4 +1,6 @@
-package pictureFilter.filters;
+package pictureFilter.filters.filters3x3;
+
+import pictureFilter.filters.pixelFilters.PixelByPixelFilter;
 
 public class PixelIterator3x3 {
     public void rowWise(double imageHeight, double imageWidth,

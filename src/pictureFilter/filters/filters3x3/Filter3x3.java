@@ -1,4 +1,4 @@
-package pictureFilter.filters;
+package pictureFilter.filters.filters3x3;
 
 public interface Filter3x3 {
     void apply(int x1, int y1, int x2, int y2, int x3, int y3,

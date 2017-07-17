@@ -1,15 +1,16 @@
-package pictureFilter.filters;
+package pictureFilter.filters.pixelFilters;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import pictureFilter.filters.Filter;
 
 /**
  * Applies a black and white filter to an image using following formula: 0.21 R + 0.72 G + 0.07 B
  */
-public class Grayscale_Filter extends PixelIterator implements Filter{
+public class Grayscale_Filter extends PixelIterator implements Filter {
 
     public void applyFilter(Image image, WritableImage writableImage) {
         if(writableImage == null || image == null) return;

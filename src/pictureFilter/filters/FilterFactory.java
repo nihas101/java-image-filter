@@ -1,6 +1,9 @@
 package pictureFilter.filters;
 
+import pictureFilter.filters.filters3x3.BlurFilter3x3;
+import pictureFilter.filters.filters3x3.MotionBlurFilterDiag3x3;
 import pictureFilter.filters.mirrorFilters.*;
+import pictureFilter.filters.pixelFilters.Grayscale_Filter;
 
 import java.util.Collection;
 import java.util.HashMap;

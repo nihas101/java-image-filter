@@ -1,10 +1,11 @@
-package pictureFilter.filters;
+package pictureFilter.filters.filters3x3;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import pictureFilter.filters.Filter;
 
 import static java.lang.Math.*;
 

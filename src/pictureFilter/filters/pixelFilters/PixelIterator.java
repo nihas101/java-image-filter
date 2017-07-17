@@ -1,6 +1,7 @@
-package pictureFilter.filters;
+package pictureFilter.filters.pixelFilters;
 
 import pictureFilter.filters.mirrorFilters.MirrorFilter;
+import pictureFilter.filters.pixelFilters.PixelByPixelFilter;
 
 import static java.lang.Math.ceil;
 

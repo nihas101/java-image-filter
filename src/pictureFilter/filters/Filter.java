@@ -2,6 +2,7 @@ package pictureFilter.filters;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import pictureFilter.filters.pixelFilters.PixelByPixelFilter;
 
 public interface Filter {
     /**

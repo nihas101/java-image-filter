@@ -7,7 +7,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import pictureFilter.filters.Filter;
-import pictureFilter.filters.PixelIterator;
+import pictureFilter.filters.pixelFilters.PixelIterator;
 
 public class MirrorVertLeft extends PixelIterator implements Filter {
     @Override

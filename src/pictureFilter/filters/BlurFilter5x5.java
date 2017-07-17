@@ -6,7 +6,7 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
-public class BlurFilter extends PixelIterator implements Filter {
+public class BlurFilter5x5 extends PixelIterator implements Filter {
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {
         if(writableImage == null || image == null) return;

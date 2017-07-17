@@ -23,7 +23,7 @@ public class FilterFactory {
 
     private void addAllFilters(){
         Filter bwFilter = new Grayscale_Filter();
-        Filter blurFilter = new BlurFilter();
+        Filter blurFilter = new BlurFilter5x5();
 
         Filter mhFilter = new MirrorHor();
         Filter mvFilter = new MirrorVert();

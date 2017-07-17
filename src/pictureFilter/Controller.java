@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.FileChooser;
+import pictureFilter.filters.FilterFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

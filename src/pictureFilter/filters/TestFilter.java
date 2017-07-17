@@ -1,10 +1,9 @@
-package pictureFilter;
+package pictureFilter.filters;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import javafx.scene.paint.Color;
 
 public class TestFilter implements Filter {
     @Override

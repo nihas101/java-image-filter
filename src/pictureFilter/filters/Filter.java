@@ -1,10 +1,10 @@
-package pictureFilter;
+package pictureFilter.filters;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
 /**
- * A pictureFilter.Filter which can be applied to {@link WritableImage}
+ * A pictureFilter.filters.Filter which can be applied to {@link WritableImage}
  */
 public interface Filter {
     /**

@@ -1,8 +1,8 @@
-package pictureFilter;
+package pictureFilter.filters;
 
 import java.util.HashMap;
 
-class FilterFactory {
+public class FilterFactory {
 
     private HashMap<String, Filter> filterHashMap;
 
@@ -11,11 +11,14 @@ class FilterFactory {
         addAllFilters();
     }
 
-    Filter getFilter(String filter){
-        return filterHashMap.getOrDefault(filter.toLowerCase(), null);
+    public Filter getFilter(String filterString){
+        Filter filter = filterHashMap.getOrDefault(filterString.toLowerCase(), null);
+        if(filter == null) throw new FilterNotFoundError(filterString);
+
+        return filter;
     }
 
-    public void addAllFilters(){
+    private void addAllFilters(){
         Filter bwFilter = new Grayscale_Filter();
         Filter testFilter = new TestFilter();
 

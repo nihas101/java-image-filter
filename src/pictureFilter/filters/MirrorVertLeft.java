@@ -19,15 +19,16 @@ public class MirrorVertLeft extends PixelIterator implements Filter {
         double imageWidth = writableImage.getWidth();
 
         rowOutwards(imageHeight, imageWidth, (x1,y1,x2,y2) ->{
-            Color color1 = pixelReader.getColor(x1,y1);
+            Color color = pixelReader.getColor(x1,y1);
 
             /* Set new color */
-            pixelWriter.setColor(x1,y1,color1);
+            pixelWriter.setColor(x1,y1,color);
+            pixelWriter.setColor(x2,y2,color);
         });
     }
 
     @Override
     public String getFilterName() {
-        return "mv";
+        return "mvl";
     }
 }

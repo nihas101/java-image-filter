@@ -16,7 +16,7 @@ public class PictureFilterTester {
     }
 
     @Test
-    void bwTester() {
+    void GUI_Tester() {
         try {
             PictureFilterGUI.main(new String[0]);
         } catch (IOException e) {

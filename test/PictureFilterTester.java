@@ -157,7 +157,7 @@ public class PictureFilterTester {
     @Test
     void blurTester_IL(){
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("blur").applyFilter(image, writableImage);
+        filterFactory.getFilter("blur3x3").applyFilter(image, writableImage);
 
         PixelReader oPixelReader = image.getPixelReader();
         PixelReader nPixelReader = writableImage.getPixelReader();
@@ -193,7 +193,7 @@ public class PictureFilterTester {
     @Test
     void mblurTester_IL(){
         WritableImage writableImage = new WritableImage((int)imageWidth, (int)imageHeight);
-        filterFactory.getFilter("motionblurDiag").applyFilter(image, writableImage);
+        filterFactory.getFilter("motionblurDiag3x3").applyFilter(image, writableImage);
 
         PixelReader oPixelReader = image.getPixelReader();
         PixelReader nPixelReader = writableImage.getPixelReader();

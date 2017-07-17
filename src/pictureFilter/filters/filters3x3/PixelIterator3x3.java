@@ -2,7 +2,7 @@ package pictureFilter.filters.filters3x3;
 
 import pictureFilter.filters.pixelFilters.PixelByPixelFilter;
 
-public class PixelIterator3x3 {
+public abstract class PixelIterator3x3 {
     public void rowWise(double imageHeight, double imageWidth,
                         PixelByPixelFilter pixelByPixelFilter, Filter3x3 filter3X3){
         for(int y=0 ; y < imageHeight ; y++) {

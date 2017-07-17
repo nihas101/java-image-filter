@@ -2,6 +2,7 @@ package pictureFilter.filters;
 
 import pictureFilter.filters.filters3x3.BlurFilter3x3;
 import pictureFilter.filters.filters3x3.MotionBlurFilterDiag3x3;
+import pictureFilter.filters.filtersNxN.BlurFilter5X5;
 import pictureFilter.filters.mirrorFilters.*;
 import pictureFilter.filters.pixelFilters.Grayscale_Filter;
 
@@ -26,8 +27,10 @@ public class FilterFactory {
 
     private void addAllFilters(){
         Filter bwFilter = new Grayscale_Filter();
-        Filter blurFilter = new BlurFilter3x3();
-        Filter motionblurFilter = new MotionBlurFilterDiag3x3();
+        Filter blurFilter3x3 = new BlurFilter3x3();
+        //Filter blurFilter5x5 = new BlurFilter5X5();
+        Filter motionBlurFilterDiag3x3 = new MotionBlurFilterDiag3x3();
+        //Filter motionBlurFilterDiag5x5 = new MotionBlurFilterDiag5x5();
 
         Filter mhFilter = new MirrorHor();
         Filter mvFilter = new MirrorVert();
@@ -38,8 +41,9 @@ public class FilterFactory {
         Filter mhtFilter = new MirrorHorTop();
 
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
-        this.filterHashMap.put(blurFilter.getFilterName().toLowerCase(),  blurFilter);
-        this.filterHashMap.put(motionblurFilter.getFilterName().toLowerCase(), motionblurFilter);
+        this.filterHashMap.put(blurFilter3x3.getFilterName().toLowerCase(),  blurFilter3x3);
+        //this.filterHashMap.put(blurFilter5x5.getFilterName().toLowerCase(), blurFilter5x5);
+        this.filterHashMap.put(motionBlurFilterDiag3x3.getFilterName().toLowerCase(), motionBlurFilterDiag3x3);
 
         this.filterHashMap.put(mhFilter.getFilterName().toLowerCase(), mhFilter);
         this.filterHashMap.put(mvFilter.getFilterName().toLowerCase(), mvFilter);

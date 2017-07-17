@@ -1,4 +1,4 @@
-package pictureFilter.filters.filters3x3;
+package pictureFilter.filters.filtersNxN;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
@@ -9,7 +9,7 @@ import pictureFilter.filters.Filter;
 
 import static java.lang.Math.ceil;
 
-public class BlurFilter3x3 extends PixelIterator3x3 implements Filter {
+public class BlurFilter5X5 extends PixelIterator5x5 implements Filter {
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {
         if(writableImage == null || image == null) return;
@@ -27,24 +27,28 @@ public class BlurFilter3x3 extends PixelIterator3x3 implements Filter {
                     /* Edgecase just copy the color */
                     pixelWriter.setColor(x, y, color);
                 },
-                (int x1, int y1, int x2, int y2, int x3, int y3,
-                 int x4, int y4, int x,  int y,  int x5, int y5,
-                 int x6, int y6, int x7, int y7, int x8, int y8) ->{
+                (x, y) ->{
+                    System.out.println(x.length);
                     /* Get colors of neighbours for blur calculations */
-                    Color color1 = pixelReader.getColor(x,y);
-                    Color color2 = pixelReader.getColor(x4,y4);
-                    Color color3 = pixelReader.getColor(x2,y2);
-                    Color color4 = pixelReader.getColor(x5,y5);
-                    Color color5 = pixelReader.getColor(x7,y7);
+                    Color color1 = pixelReader.getColor(x[2],y[2]);
+                    Color color2 = pixelReader.getColor(x[7],y[7]);
+                    Color color3 = pixelReader.getColor(x[10],y[10]);
+                    Color color4 = pixelReader.getColor(x[11],y[11]);
+                    Color color5 = pixelReader.getColor(x[12],y[12]);
+                    Color color6 = pixelReader.getColor(x[13],y[13]);
+                    Color color7 = pixelReader.getColor(x[14],y[14]);
+                    Color color8 = pixelReader.getColor(x[17],y[17]);
+                    Color color9 = pixelReader.getColor(x[22],y[22]);
 
                    /* Set new color */
-                    Color color = averageOfColors(color1,color2, color3, color4, color5);
-                    pixelWriter.setColor(x,y,color);
+                    Color color = averageOfColors(color1, color2, color3, color4,
+                            color5, color6, color7, color8, color9);
+                    pixelWriter.setColor(x[13],y[13],color);
                 });
     }
 
     @Override
-    public String getFilterName() { return "blur3x3"; }
+    public String getFilterName() { return "blur5x5"; }
 
     private Color averageOfColors(Color... colors){
         double red = 0;
@@ -59,6 +63,6 @@ public class BlurFilter3x3 extends PixelIterator3x3 implements Filter {
 
         int middle = (int) ceil(colors.length/2);
 
-        return new Color(red*.2, green*.2, blue*.2, colors[middle].getOpacity());
+        return new Color(red/9, green/9, blue/9, colors[middle].getOpacity());
     }
 }

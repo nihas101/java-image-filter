@@ -41,6 +41,8 @@ public class PictureFilter{
 
         image = loadImage(fileArg, imagePath);
 
+        // TODO: display image, then ask if you want to save it
+
         FilterFactory filterFactory = new FilterFactory(new HashMap<>());
         Filter filter = filterFactory.getFilter(filterArg);
         Image newImage = applyFilter(filter, image);

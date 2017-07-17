@@ -100,5 +100,5 @@ public class PictureFilter{
         else out.println("Image saved under: " + newFileName);
     }
 
-    /* TODO: fix ImageIO.write bug on jpg pictures, add more filters, adjust size of imageview with pictures, maybe instead of chooser drop down menu? etc*/
+    /* TODO: fix ImageIO.write bug on jpg pictures, add more filters, maybe instead of chooser drop down menu? etc*/
 }

@@ -17,6 +17,7 @@ public class BlurFilter extends PixelIterator implements Filter {
         double imageHeight = writableImage.getHeight();
         double imageWidth = writableImage.getWidth();
 
+        // source: http://lodev.org/cgtutor/filtering.html
         rowWise(imageHeight, imageWidth, (x,y) ->{
             Color color1 = pixelReader.getColor(x,y);
             /* Edgecase just copy the color */

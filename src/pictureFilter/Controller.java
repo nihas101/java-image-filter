@@ -4,12 +4,14 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import pictureFilter.filters.Filter;
 import pictureFilter.filters.FilterFactory;
@@ -25,9 +27,10 @@ import java.util.ResourceBundle;
 
 import static java.lang.String.CASE_INSENSITIVE_ORDER;
 import static javafx.collections.FXCollections.observableArrayList;
-import static pictureFilter.PictureFilter.getImageFormat;
 
 public class Controller implements Initializable {
+    @FXML
+    private VBox rootBox;
     @FXML
     private TextField pathTextField;
     @FXML
@@ -67,6 +70,7 @@ public class Controller implements Initializable {
         if(bufferedImage != null){
             image = SwingFXUtils.toFXImage(bufferedImage, null);
             beforeImageView.setImage(image);
+            bindImageViews();
         }else return;
 
         format = pictureFilter.getFormat(file.toPath());
@@ -100,5 +104,13 @@ public class Controller implements Initializable {
 
     public void writeImageToDisk(ActionEvent actionEvent) {
         pictureFilter.writeImageToDisk(pathTextField.getText().trim(), writableImage, format, "");
+    }
+
+    void bindImageViews(){
+        Scene scene = rootBox.getScene();
+        beforeImageView.fitWidthProperty().bind(scene.widthProperty());
+        beforeImageView.fitHeightProperty().bind(scene.heightProperty());
+        afterImageView.fitWidthProperty().bind(scene.widthProperty());
+        afterImageView.fitHeightProperty().bind(scene.heightProperty());
     }
 }

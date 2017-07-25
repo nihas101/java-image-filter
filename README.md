@@ -19,3 +19,6 @@ Blur:
 <img src ="https://user-images.githubusercontent.com/19901622/28288100-536e74dc-6b3e-11e7-8efd-f2b4d5431bc7.png" width="100">
 
 Motion-blur:
+
+<img src ="https://user-images.githubusercontent.com/19901622/28583651-338fba7c-716a-11e7-847f-d5881cbec7aa.png" width="100">
+

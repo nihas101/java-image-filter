@@ -42,7 +42,7 @@ public class FilterFactory {
 
         Filter findEdges = new FindEdges();
         Filter sharpenFilter = new SharpenFilter();
-        Filter emphEdges = new EmphEdges();
+        Filter emphasiseEdges = new EmphasiseEdges();
         Filter embossFilter = new EmbossFilter();
         Filter bumpMap = new BumpMap();
 
@@ -61,7 +61,7 @@ public class FilterFactory {
 
         this.filterHashMap.put(findEdges.getFilterName().toLowerCase(), findEdges);
         this.filterHashMap.put(sharpenFilter.getFilterName().toLowerCase(), sharpenFilter);
-        this.filterHashMap.put(emphEdges.getFilterName().toLowerCase(), emphEdges);
+        this.filterHashMap.put(emphasiseEdges.getFilterName().toLowerCase(), emphasiseEdges);
         this.filterHashMap.put(embossFilter.getFilterName().toLowerCase(), embossFilter);
         this.filterHashMap.put(bumpMap.getFilterName().toLowerCase(), bumpMap);
     }

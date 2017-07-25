@@ -10,7 +10,7 @@ import pictureFilter.filters.Filter;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class EmphEdges extends PixelIterator3x3 implements Filter {
+public class EmphasiseEdges extends PixelIterator3x3 implements Filter {
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {
         if(writableImage == null || image == null) return;

@@ -37,3 +37,7 @@ Emphasize edges:
 Emboss:
 
 <img src ="https://user-images.githubusercontent.com/19901622/28588520-211540ae-717b-11e7-9f48-ac7130f225da.png" width="100">
+
+Bumpmap:
+
+<img src ="https://user-images.githubusercontent.com/19901622/28588917-5a6631c8-717c-11e7-8631-8de050182f60.png" width="100">

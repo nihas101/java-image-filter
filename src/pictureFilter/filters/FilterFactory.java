@@ -3,6 +3,7 @@ package pictureFilter.filters;
 import pictureFilter.filters.filters3x3.BlurFilter3x3;
 import pictureFilter.filters.filters3x3.MotionBlurFilterDiag3x3;
 import pictureFilter.filters.filtersNxN.BlurFilter5X5;
+import pictureFilter.filters.filtersNxN.FindEdges;
 import pictureFilter.filters.mirrorFilters.*;
 import pictureFilter.filters.pixelFilters.Grayscale_Filter;
 
@@ -40,6 +41,8 @@ public class FilterFactory {
         Filter mhbFilter = new MirrorHorBottom();
         Filter mhtFilter = new MirrorHorTop();
 
+        Filter findEdges = new FindEdges();
+
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
         this.filterHashMap.put(blurFilter3x3.getFilterName().toLowerCase(),  blurFilter3x3);
         this.filterHashMap.put(blurFilter5x5.getFilterName().toLowerCase(), blurFilter5x5);
@@ -52,6 +55,8 @@ public class FilterFactory {
         this.filterHashMap.put(mvrFilter.getFilterName().toLowerCase(), mvrFilter);
         this.filterHashMap.put(mhbFilter.getFilterName().toLowerCase(), mhbFilter);
         this.filterHashMap.put(mhtFilter.getFilterName().toLowerCase(), mhtFilter);
+
+        this.filterHashMap.put(findEdges.getFilterName().toLowerCase(), findEdges);
     }
 
     public Collection<Filter> getFilters(){ return this.filterHashMap.values(); }

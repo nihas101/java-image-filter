@@ -44,6 +44,7 @@ public class FilterFactory {
         Filter sharpenFilter = new SharpenFilter();
         Filter emphEdges = new EmphEdges();
         Filter embossFilter = new EmbossFilter();
+        Filter bumpMap = new BumpMap();
 
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
         this.filterHashMap.put(blurFilter3x3.getFilterName().toLowerCase(),  blurFilter3x3);
@@ -62,6 +63,7 @@ public class FilterFactory {
         this.filterHashMap.put(sharpenFilter.getFilterName().toLowerCase(), sharpenFilter);
         this.filterHashMap.put(emphEdges.getFilterName().toLowerCase(), emphEdges);
         this.filterHashMap.put(embossFilter.getFilterName().toLowerCase(), embossFilter);
+        this.filterHashMap.put(bumpMap.getFilterName().toLowerCase(), bumpMap);
     }
 
     public Collection<Filter> getFilters(){ return this.filterHashMap.values(); }

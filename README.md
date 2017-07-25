@@ -22,3 +22,6 @@ Motion-blur:
 
 <img src ="https://user-images.githubusercontent.com/19901622/28583651-338fba7c-716a-11e7-847f-d5881cbec7aa.png" width="100">
 
+Find Edges:
+
+<img src ="https://user-images.githubusercontent.com/19901622/28584550-6f4b03fc-716d-11e7-968e-8004fa0e7668.png" width="100">

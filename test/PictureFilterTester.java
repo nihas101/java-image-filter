@@ -165,27 +165,26 @@ public class PictureFilterTester {
         for(int y=0 ; y < imageHeight ; y++) {
             for (int x = 0; x < imageWidth; x++)  {
                 Color color1 = oPixelReader.getColor(x,y);
-                /* Edgecase just copy the color */
-                if(x<=0 || x>=imageWidth-1 || y<=0 || y>=imageHeight-1){
-                    assertEquals(color1, nPixelReader.getColor(x,y));
-                }else {
-                    /* Get colors of neighbours for blur calculations */
-                    Color color2 = oPixelReader.getColor(x - 1, y);
-                    Color color3 = oPixelReader.getColor(x + 1, y);
-                    Color color4 = oPixelReader.getColor(x, y - 1);
-                    Color color5 = oPixelReader.getColor(x, y + 1);
 
-                    /* Compare colors */
-                    double red = color1.getRed() + color2.getRed() + color3.getRed() + color4.getRed() + color5.getRed();
-                    double blue = color1.getBlue() + color2.getBlue() + color3.getBlue() + color4.getBlue() + color5.getBlue();
-                    double green = color1.getGreen() + color2.getGreen() + color3.getGreen() + color4.getGreen() + color5.getGreen();
+                int x1 = mod(x-1, imageWidth), x2 = mod(x+1, imageWidth);
+                int y1 = mod(y-1, imageHeight), y2 = mod(y+1, imageHeight);
 
-                    Color color = nPixelReader.getColor(x, y);
+                /* Get colors of neighbours for blur calculations */
+                Color color2 = oPixelReader.getColor(x1, y);
+                Color color3 = oPixelReader.getColor(x2, y);
+                Color color4 = oPixelReader.getColor(x, y1);
+                Color color5 = oPixelReader.getColor(x, y2);
 
-                    assertEquals(color.getRed(), red * .2, eps);
-                    assertEquals(color.getBlue(), blue * .2, eps);
-                    assertEquals(color.getGreen(), green * .2, eps);
-                }
+                /* Compare colors */
+                double red = color1.getRed() + color2.getRed() + color3.getRed() + color4.getRed() + color5.getRed();
+                double blue = color1.getBlue() + color2.getBlue() + color3.getBlue() + color4.getBlue() + color5.getBlue();
+                double green = color1.getGreen() + color2.getGreen() + color3.getGreen() + color4.getGreen() + color5.getGreen();
+
+                Color color = nPixelReader.getColor(x, y);
+
+                assertEquals(color.getRed(), red * .2, eps);
+                assertEquals(color.getBlue(), blue * .2, eps);
+                assertEquals(color.getGreen(), green * .2, eps);
             }
         }
     }
@@ -201,27 +200,33 @@ public class PictureFilterTester {
         for(int y=0 ; y < imageHeight ; y++) {
             for (int x = 0; x < imageWidth; x++)  {
                 Color color1 = oPixelReader.getColor(x,y);
-                /* Edgecase just copy the color */
-                if(x<=0 || x>=imageWidth-1 || y<=0 || y>=imageHeight-1){
-                    assertEquals(color1, nPixelReader.getColor(x,y));
-                }else {
-                    /* Get colors of neighbours for blur calculations */
-                    Color color2 = oPixelReader.getColor(x - 1, y - 1);
-                    Color color3 = oPixelReader.getColor(x + 1, y + 1);
 
-                    /* Compare colors */
-                    double red = color1.getRed() + color2.getRed() + color3.getRed();
-                    double blue = color1.getBlue() + color2.getBlue() + color3.getBlue();
-                    double green = color1.getGreen() + color2.getGreen() + color3.getGreen();
+                int x1 = mod(x-1, imageWidth), x2 = mod(x+1, imageWidth);
+                int y1 = mod(y-1, imageHeight), y2 = mod(y+1, imageHeight);
 
-                    Color color = nPixelReader.getColor(x, y);
+                /* Get colors of neighbours for blur calculations */
+                Color color2 = oPixelReader.getColor(x1, y1);
+                Color color3 = oPixelReader.getColor(x2, y2);
 
-                    assertEquals(color.getRed(), red/3, eps);
-                    assertEquals(color.getBlue(), blue/3, eps);
-                    assertEquals(color.getGreen(), green/3, eps);
-                }
+                /* Compare colors */
+                double red = color1.getRed() + color2.getRed() + color3.getRed();
+                double blue = color1.getBlue() + color2.getBlue() + color3.getBlue();
+                double green = color1.getGreen() + color2.getGreen() + color3.getGreen();
+
+                Color color = nPixelReader.getColor(x, y);
+
+                assertEquals(color.getRed(), red/3, eps);
+                assertEquals(color.getBlue(), blue/3, eps);
+                assertEquals(color.getGreen(), green/3, eps);
             }
         }
+    }
+
+    private int mod(int x, double mod){
+        if(x < 0) x = (int) (x + mod);
+        if(x >= mod) x = (int) (x - mod);
+
+        return x;
     }
 
     @Test

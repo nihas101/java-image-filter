@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import pictureFilter.filters.Filter;
 
 import static java.lang.Math.ceil;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 public class BlurFilter5X5 extends PixelIterator5x5 implements Filter {
     @Override
@@ -56,7 +58,10 @@ public class BlurFilter5X5 extends PixelIterator5x5 implements Filter {
         }
 
         int middle = (int) ceil(colors.length/2);
+        red = min(max(red/9,0),1);
+        green = min(max(green/9,0),1);
+        blue = min(max(blue/9,0),1);
 
-        return new Color(red/9, green/9, blue/9, colors[middle].getOpacity());
+        return new Color(red, green, blue, colors[middle].getOpacity());
     }
 }

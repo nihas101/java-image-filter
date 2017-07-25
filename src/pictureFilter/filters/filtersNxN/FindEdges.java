@@ -7,6 +7,9 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import pictureFilter.filters.Filter;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 public class FindEdges extends PixelIterator5x5 implements Filter {
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {
@@ -39,13 +42,9 @@ public class FindEdges extends PixelIterator5x5 implements Filter {
         double blue  = - color1.getBlue()  - color2.getBlue()  + 4*color3.getBlue()  - color4.getBlue()  - color5.getBlue();
         double green = - color1.getGreen() - color2.getGreen() + 4*color3.getGreen() - color4.getGreen() - color5.getGreen();
 
-        if(red < 0) red = 0;
-        if(blue < 0) blue = 0;
-        if(green < 0) green = 0;
-
-        if(red > 1) red = 1;
-        if(blue > 1) blue = 1;
-        if(green > 1) green = 1;
+        red = min(max(red,0),1);
+        green = min(max(green,0),1);
+        blue = min(max(blue,0),1);
 
         return Color.color(red, blue, green);
     }

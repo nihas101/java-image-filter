@@ -49,12 +49,13 @@ public class MotionBlurFilterDiag3x3 extends PixelIterator3x3 implements Filter 
         }
 
         int middle = (int) ceil(colors.length/2);
+        red = min(max(red/3,0),1);
+        green = min(max(green/3,0),1);
+        blue = min(max(blue/3,0),1);
 
-        return new Color(red/3, green/3, blue/3, colors[middle].getOpacity());
+        return new Color(red, green, blue, colors[middle].getOpacity());
     }
 
     @Override
-    public String getFilterName() {
-        return "motionblurDiag3x3";
-    }
+    public String getFilterName() { return "motionBlurDiag3x3"; }
 }

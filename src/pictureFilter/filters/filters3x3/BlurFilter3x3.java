@@ -7,6 +7,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import pictureFilter.filters.Filter;
 
+import static java.lang.Math.*;
 import static java.lang.Math.ceil;
 
 public class BlurFilter3x3 extends PixelIterator3x3 implements Filter {
@@ -53,7 +54,10 @@ public class BlurFilter3x3 extends PixelIterator3x3 implements Filter {
         }
 
         int middle = (int) ceil(colors.length/2);
+        red = min(max(red*.2,0),1);
+        green = min(max(green*.2,0),1);
+        blue = min(max(blue*.2,0),1);
 
-        return new Color(red*.2, green*.2, blue*.2, colors[middle].getOpacity());
+        return new Color(red, green, blue, colors[middle].getOpacity());
     }
 }

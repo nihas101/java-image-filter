@@ -30,6 +30,10 @@ Sharpen:
 
 <img src ="https://user-images.githubusercontent.com/19901622/28586483-51358516-7174-11e7-8eec-080aa8068b21.png" width="100">
 
-Emphasize edges
+Emphasize edges:
 
 <img src ="https://user-images.githubusercontent.com/19901622/28586490-58bb2dae-7174-11e7-9f8b-0e815f9643a9.png" width="100">
+
+Emboss:
+
+<img src ="https://user-images.githubusercontent.com/19901622/28588520-211540ae-717b-11e7-9f48-ac7130f225da.png" width="100">

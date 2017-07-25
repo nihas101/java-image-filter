@@ -22,6 +22,14 @@ Motion-blur:
 
 <img src ="https://user-images.githubusercontent.com/19901622/28583651-338fba7c-716a-11e7-847f-d5881cbec7aa.png" width="100">
 
-Find Edges:
+Find edges:
 
 <img src ="https://user-images.githubusercontent.com/19901622/28584550-6f4b03fc-716d-11e7-968e-8004fa0e7668.png" width="100">
+
+Sharpen:
+
+<img src ="https://user-images.githubusercontent.com/19901622/28586483-51358516-7174-11e7-8eec-080aa8068b21.png" width="100">
+
+Emphasize edges
+
+<img src ="https://user-images.githubusercontent.com/19901622/28586490-58bb2dae-7174-11e7-9f8b-0e815f9643a9.png" width="100">

@@ -57,6 +57,6 @@ public class FindEdges extends PixelIterator5x5 implements Filter {
 
     @Override
     public String getFilterName() {
-        return "FindEdges";
+        return "findEdges";
     }
 }

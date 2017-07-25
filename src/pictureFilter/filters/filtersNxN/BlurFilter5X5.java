@@ -22,11 +22,6 @@ public class BlurFilter5X5 extends PixelIterator5x5 implements Filter {
 
         // source: http://lodev.org/cgtutor/filtering.html
         rowWise(imageHeight, imageWidth,
-                (x,y) -> {
-                    Color color = pixelReader.getColor(x, y);
-                    /* Edgecase just copy the color */
-                    pixelWriter.setColor(x, y, color);
-                },
                 (x, y) ->{
                     /* Get colors of neighbours for blur calculations */
                     Color color1 = pixelReader.getColor(x[2],y[2]);

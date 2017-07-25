@@ -24,7 +24,7 @@ Motion-blur:
 
 Find edges:
 
-<img src ="https://user-images.githubusercontent.com/19901622/28584550-6f4b03fc-716d-11e7-968e-8004fa0e7668.png" width="100">
+<img src ="https://user-images.githubusercontent.com/19901622/28589582-0c4485c8-717f-11e7-9b9f-952ccd7694f2.png" width="100">
 
 Sharpen:
 

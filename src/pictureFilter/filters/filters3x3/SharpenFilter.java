@@ -51,11 +51,11 @@ public class SharpenFilter extends PixelIterator3x3 implements Filter {
                         - color4.getRed() + 9*color5.getRed() - color6.getRed()
                         - color7.getRed() -   color8.getRed() - color9.getRed();
 
-        double blue  =  - color1.getGreen() -   color2.getGreen() - color3.getGreen()
+        double green  =  - color1.getGreen() -   color2.getGreen() - color3.getGreen()
                         - color4.getGreen() + 9*color5.getGreen() - color6.getGreen()
                         - color7.getGreen() -   color8.getGreen() - color9.getGreen();
 
-        double green =  - color1.getBlue() -   color2.getBlue() - color3.getBlue()
+        double blue =  - color1.getBlue() -   color2.getBlue() - color3.getBlue()
                         - color4.getBlue() + 9*color5.getBlue() - color6.getBlue()
                         - color7.getBlue() -   color8.getBlue() - color9.getBlue();
 

@@ -41,3 +41,7 @@ Emboss:
 Bumpmap:
 
 <img src ="https://user-images.githubusercontent.com/19901622/28588917-5a6631c8-717c-11e7-8631-8de050182f60.png" width="100">
+
+Invert:
+
+<img src ="https://user-images.githubusercontent.com/19901622/28689147-dfea3a44-7314-11e7-9f46-7a1083e341c3.png" width="100">

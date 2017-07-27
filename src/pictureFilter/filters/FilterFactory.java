@@ -5,6 +5,7 @@ import pictureFilter.filters.filtersNxN.BlurFilter5X5;
 import pictureFilter.filters.filtersNxN.FindEdges;
 import pictureFilter.filters.mirrorFilters.*;
 import pictureFilter.filters.pixelFilters.Grayscale_Filter;
+import pictureFilter.filters.pixelFilters.InvertFilter;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -45,6 +46,7 @@ public class FilterFactory {
         Filter emphasiseEdges = new EmphasiseEdges();
         Filter embossFilter = new EmbossFilter();
         Filter bumpMap = new BumpMap();
+        Filter invertFilter = new InvertFilter();
 
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
         this.filterHashMap.put(blurFilter3x3.getFilterName().toLowerCase(),  blurFilter3x3);
@@ -64,6 +66,7 @@ public class FilterFactory {
         this.filterHashMap.put(emphasiseEdges.getFilterName().toLowerCase(), emphasiseEdges);
         this.filterHashMap.put(embossFilter.getFilterName().toLowerCase(), embossFilter);
         this.filterHashMap.put(bumpMap.getFilterName().toLowerCase(), bumpMap);
+        this.filterHashMap.put(invertFilter.getFilterName().toLowerCase(), invertFilter);
     }
 
     public Collection<Filter> getFilters(){ return this.filterHashMap.values(); }

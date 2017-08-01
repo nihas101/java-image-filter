@@ -3,6 +3,8 @@ package pictureFilter.filters;
 import pictureFilter.filters.filters3x3.*;
 import pictureFilter.filters.filtersNxN.BlurFilter5X5;
 import pictureFilter.filters.filtersNxN.FindEdges;
+import pictureFilter.filters.filtersNxN.MosaicFilter;
+import pictureFilter.filters.filtersNxN.SNESMosaicFilter;
 import pictureFilter.filters.mirrorFilters.*;
 import pictureFilter.filters.pixelFilters.Grayscale_Filter;
 import pictureFilter.filters.pixelFilters.InvertFilter;
@@ -48,6 +50,9 @@ public class FilterFactory {
         Filter bumpMap = new BumpMap();
         Filter invertFilter = new InvertFilter();
 
+        SNESMosaicFilter snesMosaicFilter = new SNESMosaicFilter();
+        MosaicFilter mosaicFilter = new MosaicFilter();
+
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
         this.filterHashMap.put(blurFilter3x3.getFilterName().toLowerCase(),  blurFilter3x3);
         this.filterHashMap.put(blurFilter5x5.getFilterName().toLowerCase(), blurFilter5x5);
@@ -67,6 +72,9 @@ public class FilterFactory {
         this.filterHashMap.put(embossFilter.getFilterName().toLowerCase(), embossFilter);
         this.filterHashMap.put(bumpMap.getFilterName().toLowerCase(), bumpMap);
         this.filterHashMap.put(invertFilter.getFilterName().toLowerCase(), invertFilter);
+
+        this.filterHashMap.put(snesMosaicFilter.getFilterName().toLowerCase(), snesMosaicFilter);
+        this.filterHashMap.put(mosaicFilter.getFilterName().toLowerCase(), mosaicFilter);
     }
 
     public Collection<Filter> getFilters(){ return this.filterHashMap.values(); }

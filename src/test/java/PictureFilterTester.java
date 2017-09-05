@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.swing.*;
+import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
@@ -35,9 +36,20 @@ public class PictureFilterTester {
         });
         latch.await();
 
-        String resource = "src\\test\\resources\\feelOfBlank.png";
+        String resource = null;
+        try {
+            resource = getClass().getResource("feelOfBlank.png").toURI().toString();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
-        image = pictureFilter.loadImage(resource, Paths.get("src\\test\\resources\\feelOfBlank.png"));
+        System.out.println(resource);
+
+        try {
+            image = pictureFilter.loadImage(getClass().getResource("feelOfBlank.png").toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         System.out.println(image.getHeight());
         imageHeight = image.getHeight();
         imageWidth = image.getWidth();

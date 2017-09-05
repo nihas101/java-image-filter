@@ -10,7 +10,9 @@ import javafx.scene.image.WritableImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 import static java.lang.System.out;
@@ -65,6 +67,14 @@ public class PictureFilter{
         Image image = new Image("file:" + fileArg);
         /* Extract format */
         format = getFormat(imagePath);
+        return image;
+    }
+
+    public Image loadImage(URI uri){
+        /* Load the image */
+        Image image = new Image(uri.toString());
+        /* Extract format */
+        format = getFormat(Paths.get(uri));
         return image;
     }
 

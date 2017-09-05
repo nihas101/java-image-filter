@@ -1,6 +1,4 @@
-# ImageFilter
-
-[![Build Status](https://travis-ci.org/nihas101/java-image-filter.svg)](https://travis-ci.org/nihas101/java-image-filter)
+# ImageFilter [![Build Status](https://travis-ci.org/nihas101/java-image-filter.svg)](https://travis-ci.org/nihas101/java-image-filter)
 
 Applies simple filters to images or manipulates them.
 

@@ -1,21 +1,14 @@
+import de.nihas101.pictureFilter.PictureFilter;
+import de.nihas101.pictureFilter.filters.FilterFactory;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
-import de.nihas101.pictureFilter.PictureFilter;
-import de.nihas101.pictureFilter.PictureFilterGUI;
-import de.nihas101.pictureFilter.filters.FilterFactory;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;

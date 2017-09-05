@@ -5,12 +5,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.swing.*;
 import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 
@@ -24,14 +25,16 @@ public class PictureFilterTester {
     private static FilterFactory filterFactory = new FilterFactory(new HashMap<>());
     private static Image image;
     private static double imageHeight, imageWidth;
-    double eps = .01;
+    private double eps = .01;
+
+    private JFXPanel jfxPanel;
 
     @Before
     public void initFX() throws InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
 
         SwingUtilities.invokeLater(() -> {
-            new JFXPanel(); // initializes JavaFX environment
+            jfxPanel = new JFXPanel(); // initializes JavaFX environment
             latch.countDown();
         });
         latch.await();
@@ -255,5 +258,10 @@ public class PictureFilterTester {
         if(x >= mod) x = (int) (x - mod);
 
         return x;
+    }
+
+    @AfterClass
+    public static void after(){
+        System.exit(0);
     }
 }

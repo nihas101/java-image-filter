@@ -16,9 +16,15 @@ or
 
 The distribution is placed under `build/distributions`.
 
-To run the program from the distribution, extract the zip or tar file, and run the launch script for your system in the bin folder. On Windows, use the Batch script (.bat extension). On OS X, Linux, etc., use the shell script (no extension).
+## How to run the program
 
-### Examples
+To run the program from the distribution, extract the zip or tar file, and run the launch script for your system in the bin folder, by typing:
+```sh
+./pictureFilter
+```
+into the command-line interface.
+
+## Examples
 
 Source images:
 

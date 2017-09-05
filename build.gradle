@@ -1,0 +1,26 @@
+apply plugin: "java"
+apply plugin: 'idea'
+apply plugin: "maven"
+apply plugin: 'application'
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+/* Application */
+mainClassName = "de.nihas101.pictureFilter.PictureFilterGUI"
+
+/* dependencies */
+repositories {
+    mavenCentral()
+    // The following is only necessary if you want to use SNAPSHOT releases.
+    // maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/junit/junit
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'junit:junit:4.12'
+}
+
+jar {
+    baseName = "pictureFilter"
+}

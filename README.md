@@ -16,6 +16,8 @@ The distribution is placed under `build/distributions`.
 
 To run the program from the distribution, extract the zip or tar file, and run the launch script for your system in the bin folder. On Windows, use the Batch script (.bat extension). On OS X, Linux, etc., use the shell script (no extension).
 
+### Examples
+
 Source images:
 
 <img src="https://user-images.githubusercontent.com/19901622/28267769-d22242e2-6afb-11e7-88c5-b2194902b977.jpg" width="100"> <img src="https://user-images.githubusercontent.com/19901622/28288101-5370928a-6b3e-11e7-9d61-cb4bfd8e4f0d.png" width="100">

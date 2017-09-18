@@ -24,6 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import static java.lang.String.CASE_INSENSITIVE_ORDER;
 import static javafx.collections.FXCollections.observableArrayList;
@@ -51,6 +52,8 @@ public class Controller implements Initializable {
     private String format;
     private PictureFilter pictureFilter;
 
+    Logger logger = Logger.getLogger(Controller.class.getName());
+
     public void openFileManager(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         BufferedImage bufferedImage = null;
@@ -64,7 +67,7 @@ public class Controller implements Initializable {
 
         if(file != null){
             try {bufferedImage = ImageIO.read(file); }
-            catch (IOException e) { e.printStackTrace(); }
+            catch (IOException e) { logger.severe(e.getMessage()); }
         }else return;
 
         if(bufferedImage != null){
@@ -85,8 +88,6 @@ public class Controller implements Initializable {
         filterFactory.getFilters().forEach( filter -> filters.add(filter.getFilterName()) );
 
         filters.sort(CASE_INSENSITIVE_ORDER);
-
-        //System.out.println("Possible filters: " + filters.toString());
 
         filterPicker.setItems( observableArrayList(filters) );
 

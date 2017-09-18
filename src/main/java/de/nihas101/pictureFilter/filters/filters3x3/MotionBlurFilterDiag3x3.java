@@ -48,7 +48,7 @@ public class MotionBlurFilterDiag3x3 extends PixelIterator3x3 implements Filter 
             green += color.getGreen();
         }
 
-        int middle = (int) ceil(colors.length/2);
+        int middle = (int) ceil(colors.length/((double)2));
         red = min(max(red/3,0),1);
         green = min(max(green/3,0),1);
         blue = min(max(blue/3,0),1);

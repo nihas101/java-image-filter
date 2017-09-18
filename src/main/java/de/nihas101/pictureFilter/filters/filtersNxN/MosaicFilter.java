@@ -48,7 +48,10 @@ public class MosaicFilter extends PixelIterator5x5 implements Filter {
             }
         }
 
-        double opacity = pixelReader.getColor((int)ceil(xs.length/2), (int)ceil(ys.length/2)).getOpacity();
+        double opacity = pixelReader.getColor(
+                (int)ceil(xs.length/((double)2)),
+                (int)ceil(ys.length/((double)2))
+        ).getOpacity();
 
         int nrOfEle = xs.length * ys.length;
 

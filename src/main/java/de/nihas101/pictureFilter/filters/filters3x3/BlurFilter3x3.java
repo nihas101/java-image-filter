@@ -53,7 +53,7 @@ public class BlurFilter3x3 extends PixelIterator3x3 implements Filter {
             green += color.getGreen();
         }
 
-        int middle = (int) ceil(colors.length/2);
+        int middle = (int) ceil(colors.length/((double)2));
         red = min(max(red*.2,0),1);
         green = min(max(green*.2,0),1);
         blue = min(max(blue*.2,0),1);

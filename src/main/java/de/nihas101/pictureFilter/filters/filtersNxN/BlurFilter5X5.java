@@ -57,7 +57,7 @@ public class BlurFilter5X5 extends PixelIterator5x5 implements Filter {
             green += color.getGreen();
         }
 
-        int middle = (int) ceil(colors.length/2);
+        int middle = (int) ceil(colors.length/((double)2));
         red = min(max(red/9,0),1);
         green = min(max(green/9,0),1);
         blue = min(max(blue/9,0),1);

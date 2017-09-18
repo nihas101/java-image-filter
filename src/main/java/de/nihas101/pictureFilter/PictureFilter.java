@@ -2,6 +2,7 @@ package de.nihas101.pictureFilter;
 
 import de.nihas101.pictureFilter.filters.Filter;
 import de.nihas101.pictureFilter.filters.FilterFactory;
+import de.nihas101.pictureFilter.filters.utils.NotEnoughArgumentsException;
 import javafx.embed.swing.JFXPanel;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
@@ -14,6 +15,7 @@ import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import static java.lang.System.out;
 import static java.nio.file.Files.*;
@@ -22,15 +24,16 @@ import static javax.imageio.ImageIO.write;
 
 public class PictureFilter{
     private String format;
+    private static Logger logger = Logger.getLogger(PictureFilter.class.getName());
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, NotEnoughArgumentsException {
         /* Init javafx core */
         new JFXPanel();
         new PictureFilter().filterImage(args);
     }
 
-    public void filterImage(String[] args) throws FileNotFoundException {
-        if(args.length < 2) throw new Error("Not enough Arguments...");
+    public void filterImage(String[] args) throws FileNotFoundException, NotEnoughArgumentsException {
+        if(args.length < 2) throw new NotEnoughArgumentsException();
 
         String fileArg = args[0];
         String filterArg = args[1];
@@ -57,7 +60,7 @@ public class PictureFilter{
      */
     public static String getImageFormat(Path path){
         try { return probeContentType(path); }
-        catch (IOException e) { e.printStackTrace(); }
+        catch (IOException e) { logger.severe(e.getMessage()); }
 
         return "";
     }
@@ -103,7 +106,7 @@ public class PictureFilter{
         try {
             write = write(SwingFXUtils.fromFXImage(image, null), format, file);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.severe(e.getMessage());
         }
 
         if(!write) out.println("Saving the image failed");

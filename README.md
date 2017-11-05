@@ -2,6 +2,9 @@
 
 A small java program which applies simple filters to images.
 
+## Requirements
+**Java 1.8** is required to run this program.
+
 ## Build Standalone Distribution
 
 To create a standalone distribution as a zip or tar file, run:

@@ -2,6 +2,8 @@
 
 A small java program which applies simple filters to images.
 
+[![Click here]()](https://github.com/nihas101/java-image-filter/releases/latest)  for the latest release
+
 ## Requirements
 **Java 1.8** is required to run this program.
 

@@ -1,4 +1,4 @@
-# ImageFilter [![Build Status](https://travis-ci.org/nihas101/java-image-filter.svg)](https://travis-ci.org/nihas101/java-image-filter) [![Code Climate](https://codeclimate.com/github/nihas101/java-image-filter/badges/gpa.svg)](https://codeclimate.com/github/nihas101/java-image-filter)
+# ImageFilter [![Build Status](https://travis-ci.org/nihas101/java-image-filter.svg)](https://travis-ci.org/nihas101/java-image-filter) [![Maintainability](https://api.codeclimate.com/v1/badges/52ccb942b49b280b5f97/maintainability)](https://codeclimate.com/github/nihas101/java-image-filter/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/52ccb942b49b280b5f97/test_coverage)](https://codeclimate.com/github/nihas101/java-image-filter/test_coverage)
 
 A small java program which applies simple filters to images.
 

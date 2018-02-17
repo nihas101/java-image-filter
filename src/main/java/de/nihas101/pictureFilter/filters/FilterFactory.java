@@ -7,7 +7,7 @@ import de.nihas101.pictureFilter.filters.filtersNxN.FindEdges;
 import de.nihas101.pictureFilter.filters.filtersNxN.MosaicFilter;
 import de.nihas101.pictureFilter.filters.filtersNxN.SNESMosaicFilter;
 import de.nihas101.pictureFilter.filters.mirrorFilters.*;
-import de.nihas101.pictureFilter.filters.pixelFilters.Grayscale_Filter;
+import de.nihas101.pictureFilter.filters.pixelFilters.GrayScaleFilter;
 import de.nihas101.pictureFilter.filters.pixelFilters.InvertFilter;
 
 import java.util.Collection;
@@ -30,19 +30,19 @@ public class FilterFactory {
     }
 
     private void addAllFilters(){
-        Filter bwFilter = new Grayscale_Filter();
+        Filter bwFilter = new GrayScaleFilter();
         Filter blurFilter3x3 = new BlurFilter3x3();
         Filter blurFilter5x5 = new BlurFilter5X5();
         Filter motionBlurFilterDiag3x3 = new MotionBlurFilterDiag3x3();
         //Filter motionBlurFilterDiag5x5 = new MotionBlurFilterDiag5x5();
 
-        Filter mhFilter = new MirrorHor();
-        Filter mvFilter = new MirrorVert();
+        Filter mhFilter = new MirrorHorizontal();
+        Filter mvFilter = new MirrorVertical();
 
-        Filter mvlFilter = new MirrorVertLeft();
-        Filter mvrFilter = new MirrorVertRight();
-        Filter mhbFilter = new MirrorHorBottom();
-        Filter mhtFilter = new MirrorHorTop();
+        Filter mvlFilter = new MirrorVerticalLeft();
+        Filter mvrFilter = new MirrorVerticalRight();
+        Filter mhbFilter = new MirrorHorizontalBottom();
+        Filter mhtFilter = new MirrorHorizontalTop();
 
         Filter findEdges = new FindEdges();
         Filter sharpenFilter = new SharpenFilter();

@@ -10,11 +10,9 @@ import javafx.scene.paint.Color;
 /**
  * Applies a black and white filter to an image using following formula: 0.21 R + 0.72 G + 0.07 B
  */
-public class Grayscale_Filter extends PixelIterator implements Filter {
+public class GrayScaleFilter extends PixelIterator implements Filter {
 
     public void applyFilter(Image image, WritableImage writableImage) {
-        if(writableImage == null || image == null) return;
-
         PixelReader pixelReader = image.getPixelReader();
         PixelWriter pixelWriter = writableImage.getPixelWriter();
 

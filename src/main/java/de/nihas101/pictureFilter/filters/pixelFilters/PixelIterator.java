@@ -35,17 +35,26 @@ public abstract class PixelIterator {
         }
     }
 
-    public void rowOutwards(double imageHeight, double imageWidth, MirrorFilter mirrorFilter){
+    protected void rowOutwards(double imageHeight, double imageWidth, MirrorFilter mirrorFilter){
         for(int y=0 ; y < imageHeight ; y++) {
             for (int x = (int) ceil(imageWidth/2); x > 0; x--)
                 mirrorFilter.apply(x, y, (int) (imageWidth - x), y);
         }
     }
 
-    public void columnOutwards(double imageHeight, double imageWidth, MirrorFilter mirrorFilter){
+    protected void columnOutwards(double imageHeight, double imageWidth, MirrorFilter mirrorFilter){
         for(int x=0 ; x < imageWidth ; x++) {
             for (int y = (int) ceil(imageHeight/2); y > 0; y--)
                 mirrorFilter.apply(x, y, x, (int) (imageHeight - y));
         }
+    }
+
+    protected int[] modulo(int[] xs, double mod) {
+        for (int i = 0; i < xs.length; i++) {
+            if (xs[i] < 0) xs[i] = (int) (xs[i] + mod);
+            if (xs[i] >= mod) xs[i] = (int) (xs[i] - mod);
+        }
+
+        return xs;
     }
 }

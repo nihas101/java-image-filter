@@ -57,13 +57,4 @@ public abstract class PixelIterator5x5 extends PixelIterator {
 
         return xs;
     }
-
-    private int[] modulo(int[] xs, double mod) {
-        for (int i = 0; i < xs.length; i++) {
-            if (xs[i] < 0) xs[i] = (int) (xs[i] + mod);
-            if (xs[i] >= mod) xs[i] = (int) (xs[i] - mod);
-        }
-
-        return xs;
-    }
 }

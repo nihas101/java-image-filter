@@ -1,7 +1,8 @@
-apply plugin: "java"
+apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: "maven"
+apply plugin: 'maven'
 apply plugin: 'application'
+apply plugin: 'jacoco'
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
@@ -26,3 +27,12 @@ dependencies {
 jar {
     baseName = "PictureFilter"
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport

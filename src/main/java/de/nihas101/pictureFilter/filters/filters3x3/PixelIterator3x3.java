@@ -1,6 +1,8 @@
 package de.nihas101.pictureFilter.filters.filters3x3;
 
-public abstract class PixelIterator3x3 {
+import de.nihas101.pictureFilter.filters.pixelFilters.PixelIterator;
+
+public abstract class PixelIterator3x3 extends PixelIterator {
     public void rowWise(double imageHeight, double imageWidth, Filter3x3 filter3X3){
         for(int y=0 ; y < imageHeight ; y++) {
             for (int x = 0; x < imageWidth; x++) {

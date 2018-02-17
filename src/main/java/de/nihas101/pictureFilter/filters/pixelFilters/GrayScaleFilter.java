@@ -13,11 +13,7 @@ import javafx.scene.paint.Color;
 public class GrayScaleFilter extends PixelIterator implements Filter {
 
     public void applyFilter(Image image, WritableImage writableImage) {
-        PixelReader pixelReader = image.getPixelReader();
-        PixelWriter pixelWriter = writableImage.getPixelWriter();
-
-        double imageHeight = writableImage.getHeight();
-        double imageWidth = writableImage.getWidth();
+        setup(image, writableImage);
 
         rowWise(imageHeight, imageWidth, (x, y) -> {
             Color color = pixelReader.getColor(x,y);

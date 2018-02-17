@@ -12,11 +12,7 @@ import javafx.scene.paint.Color;
 public class MirrorVerticalLeft extends PixelIterator implements Filter {
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {
-        PixelReader pixelReader = image.getPixelReader();
-        PixelWriter pixelWriter = writableImage.getPixelWriter();
-
-        double imageHeight = writableImage.getHeight();
-        double imageWidth = writableImage.getWidth();
+        setup(image, writableImage);
 
         rowOutwards(imageHeight, imageWidth, (x1,y1,x2,y2) ->{
             Color color = pixelReader.getColor(x1,y1);

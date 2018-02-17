@@ -13,13 +13,7 @@ import static java.lang.Math.min;
 public class EmbossFilter extends PixelIterator3x3 implements Filter {
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {
-        if(writableImage == null || image == null) return;
-
-        PixelReader pixelReader = image.getPixelReader();
-        PixelWriter pixelWriter = writableImage.getPixelWriter();
-
-        double imageHeight = writableImage.getHeight();
-        double imageWidth = writableImage.getWidth();
+        setup(image, writableImage);
 
         // source: http://lodev.org/cgtutor/filtering.html
         rowWise(imageHeight, imageWidth,

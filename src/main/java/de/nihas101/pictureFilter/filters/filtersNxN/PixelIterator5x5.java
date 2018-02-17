@@ -1,6 +1,8 @@
 package de.nihas101.pictureFilter.filters.filtersNxN;
 
-public abstract class PixelIterator5x5 {
+import de.nihas101.pictureFilter.filters.pixelFilters.PixelIterator;
+
+public abstract class PixelIterator5x5 extends PixelIterator {
     public void rowWise(double imageHeight, double imageWidth, FilterNxN filterNxN) {
         for (int y = 0; y < imageHeight; y++) {
             for (int x = 0; x < imageWidth; x++) {

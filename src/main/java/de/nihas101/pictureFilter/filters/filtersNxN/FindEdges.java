@@ -13,15 +13,11 @@ import static java.lang.Math.min;
 public class FindEdges extends PixelIterator5x5 implements Filter {
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {
-        PixelReader pixelReader = image.getPixelReader();
-        PixelWriter pixelWriter = writableImage.getPixelWriter();
-
-        double imageHeight = writableImage.getHeight();
-        double imageWidth = writableImage.getWidth();
+        setup(image, writableImage);
 
         // source: http://lodev.org/cgtutor/filtering.html
         rowWise(imageHeight, imageWidth,
-                (x, y) ->{
+                (FilterNxN) (x, y) ->{
                     /* Get colors of neighbours for blur calculations */
                     Color color1 = pixelReader.getColor(x[3],y[3]);
                     Color color2 = pixelReader.getColor(x[7],y[7]);

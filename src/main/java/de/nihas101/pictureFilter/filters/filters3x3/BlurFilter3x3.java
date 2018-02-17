@@ -12,11 +12,7 @@ import static java.lang.Math.*;
 public class BlurFilter3x3 extends PixelIterator3x3 implements Filter {
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {
-        PixelReader pixelReader = image.getPixelReader();
-        PixelWriter pixelWriter = writableImage.getPixelWriter();
-
-        double imageHeight = writableImage.getHeight();
-        double imageWidth = writableImage.getWidth();
+        setup(image, writableImage);
 
         // source: http://lodev.org/cgtutor/filtering.html
         rowWise(imageHeight, imageWidth,

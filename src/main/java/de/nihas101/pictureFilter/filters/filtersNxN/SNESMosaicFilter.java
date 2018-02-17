@@ -10,11 +10,7 @@ import javafx.scene.paint.Color;
 public class SNESMosaicFilter extends PixelIterator5x5 implements Filter {
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {
-        PixelReader pixelReader = image.getPixelReader();
-        PixelWriter pixelWriter = writableImage.getPixelWriter();
-
-        double imageHeight = writableImage.getHeight();
-        double imageWidth = writableImage.getWidth();
+        setup(image, writableImage);
 
         squareRowWise(imageHeight, imageWidth,
                 (x, y) ->{

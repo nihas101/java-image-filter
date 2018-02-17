@@ -62,14 +62,15 @@ public class Controller implements Initializable {
 
         File file = fileChooser.showOpenDialog(null);
 
-
         if(file != null){
+            filterPicker.getSelectionModel().clearSelection();
+            afterImageView.setImage(null);
             try {bufferedImage = ImageIO.read(file); }
             catch (IOException e) { logger.severe(e.getMessage()); }
         }else return;
 
         if(bufferedImage != null){
-            image = SwingFXUtils.toFXImage(bufferedImage, null);
+            image = toFXImage(bufferedImage, null);
             beforeImageView.setImage(image);
             bindImageViews();
         }else return;
@@ -91,7 +92,7 @@ public class Controller implements Initializable {
         filterPicker.setItems( observableArrayList(filters) );
 
         filterPicker.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(image == null) return;
+            if(image == null || newValue == null) return;
             /* Apply filter and display */
             writableImage = new WritableImage((int)image.getWidth(), (int)image.getHeight());
             filter = filterFactory.getFilter(newValue);

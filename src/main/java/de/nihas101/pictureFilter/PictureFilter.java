@@ -4,10 +4,11 @@ import de.nihas101.pictureFilter.filters.Filter;
 import de.nihas101.pictureFilter.filters.FilterFactory;
 import de.nihas101.pictureFilter.filters.utils.NotEnoughArgumentsException;
 import javafx.embed.swing.JFXPanel;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 import static java.lang.System.out;
 import static java.nio.file.Files.*;
 import static java.nio.file.Paths.get;
+import static javafx.embed.swing.SwingFXUtils.fromFXImage;
 import static javax.imageio.ImageIO.write;
 
 public class PictureFilter{
@@ -97,21 +99,41 @@ public class PictureFilter{
 
     public void writeImageToDisk(String fileArg, Image image, String format, String fileNameAddition){
         boolean write = false;
+        BufferedImage bufferedImage;
 
         /* Write the image */
         String newFileName = fileArg.substring(0, fileArg.indexOf(".")) + fileNameAddition
                 + fileArg.substring(fileArg.indexOf("."));
 
         File file = new File(newFileName);
-        try {
-            write = write(SwingFXUtils.fromFXImage(image, null), format, file);
-        } catch (IOException e) {
-            logger.severe(e.getMessage());
-        }
+
+        if("jpeg".equals(format)) bufferedImage = createBufferedImageFromJPG(image);
+        else bufferedImage = createBufferedImage(image);
+
+        try { write = write(bufferedImage, format, file); }
+        catch (IOException e) { logger.severe(e.getMessage()); }
 
         if(!write) out.println("Saving the image failed");
         else out.println("Image saved under: " + newFileName);
     }
 
-    /* TODO: fix ImageIO.write bug on jpg pictures, add more filters, maybe instead of chooser drop down menu? etc*/
+    /**
+     * Hack to remove alpha from JPG images, otherwise they are tinted pink
+     * @param image The image to convert to JPG without alpa
+     * @return The image without alpha values
+     */
+    private BufferedImage createBufferedImageFromJPG(Image image){
+        BufferedImage newImage = fromFXImage(image, null);
+        BufferedImage imageRGB = new BufferedImage((int)image.getWidth(), (int)image.getHeight(), BufferedImage.OPAQUE);
+
+        Graphics2D graphics = imageRGB.createGraphics();
+        graphics.drawImage(newImage, 0, 0, null);
+        graphics.dispose();
+
+        return imageRGB;
+    }
+
+    private BufferedImage createBufferedImage(Image image) {
+        return fromFXImage(image, null);
+    }
 }

@@ -36,17 +36,24 @@ public abstract class PixelIterator {
     }
 
     protected void rowOutwards(double imageHeight, double imageWidth, MirrorFilter mirrorFilter){
-        for(int y=0 ; y < imageHeight ; y++) {
-            for (int x = (int) ceil(imageWidth/2); x > 0; x--)
-                mirrorFilter.apply(x, y, (int) (imageWidth - x), y);
-        }
+        iterateThroughPixels(
+                (int)imageHeight,
+                (int)ceil(imageWidth/2),
+                (y, x) -> mirrorFilter.apply(x, y,(int) (imageWidth - x), y)
+        );
     }
 
     protected void columnOutwards(double imageHeight, double imageWidth, MirrorFilter mirrorFilter){
-        for(int x=0 ; x < imageWidth ; x++) {
-            for (int y = (int) ceil(imageHeight/2); y > 0; y--)
-                mirrorFilter.apply(x, y, x, (int) (imageHeight - y));
-        }
+        iterateThroughPixels(
+                (int)imageWidth,
+                (int)ceil(imageHeight/2),
+                (x, y) -> mirrorFilter.apply(x, y, x, (int) (imageHeight - y))
+        );
+    }
+
+    private void iterateThroughPixels(int outerLimit, int innerLimit, PixelFilter pixelFilter){
+        for(int x=0 ; x < outerLimit ; x++)
+            for(int y = innerLimit; y > 0; y--) pixelFilter.apply(x, y);
     }
 
     protected int[] modulo(int[] xs, double mod) {

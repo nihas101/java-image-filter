@@ -28,6 +28,13 @@ jar {
     baseName = "PictureFilter"
 }
 
+test {
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        exceptionFormat 'full'
+    }
+}
+
 jacocoTestReport {
     reports {
         xml.enabled = true

@@ -1,5 +1,7 @@
 package de.nihas101.pictureFilter;
 
+import de.nihas101.pictureFilter.filters.Filter;
+import de.nihas101.pictureFilter.filters.FilterFactory;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import de.nihas101.pictureFilter.filters.Filter;
-import de.nihas101.pictureFilter.filters.FilterFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

@@ -1,9 +1,9 @@
 package de.nihas101.pictureFilter.filters.filters3x3;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import de.nihas101.pictureFilter.filters.Filter;
 import de.nihas101.pictureFilter.filters.pixelFilters.Grayscale_Filter;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 
 public class BumpMap extends PixelIterator3x3 implements Filter {
     @Override

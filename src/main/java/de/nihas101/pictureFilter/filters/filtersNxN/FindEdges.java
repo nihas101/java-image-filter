@@ -24,21 +24,25 @@ public class FindEdges extends PixelIterator5x5 implements Filter {
                     Color color5 = pixelReader.getColor(x[23],y[23]);
 
                    /* Set new color */
-                    Color color = findEdgeCalc(color1, color2, color3, color4, color5);
+                    Color color = findEdge(color1, color2, color3, color4, color5);
                     pixelWriter.setColor(x[13],y[13],color);
                 });
     }
 
-    private Color findEdgeCalc(Color color1, Color color2, Color color3, Color color4, Color color5) {
-        double red   = - color1.getRed()   - color2.getRed()   + 4*color3.getRed()   - color4.getRed()   - color5.getRed();
-        double blue  = - color1.getBlue()  - color2.getBlue()  + 4*color3.getBlue()  - color4.getBlue()  - color5.getBlue();
-        double green = - color1.getGreen() - color2.getGreen() + 4*color3.getGreen() - color4.getGreen() - color5.getGreen();
+    private Color findEdge(Color color1, Color color2, Color color3, Color color4, Color color5) {
+        double red   = findEdge(new double[]{color1.getRed(), color2.getRed(), color3.getRed(), color4.getRed(), color5.getRed()});
+        double blue  = findEdge(new double[]{color1.getBlue(), color2.getBlue(), color3.getBlue(), color4.getBlue(), color5.getBlue()});
+        double green = findEdge(new double[]{color1.getGreen(), color2.getGreen(), color3.getGreen(), color4.getGreen(), color5.getGreen()});
 
         red = min(max(red,0),1);
         green = min(max(green,0),1);
         blue = min(max(blue,0),1);
 
         return Color.color(red, blue, green);
+    }
+
+    private double findEdge(double[] colors){
+        return - colors[0] - colors[1] + 4*colors[2] - colors[3] - colors[4];
     }
 
     @Override

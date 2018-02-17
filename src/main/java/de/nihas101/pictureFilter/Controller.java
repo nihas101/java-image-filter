@@ -41,9 +41,7 @@ public class Controller implements Initializable {
     @FXML
     private ImageView afterImageView;
     @FXML
-    private Button loadImageButton;
-    @FXML
-    private ChoiceBox filterPicker;
+    private ChoiceBox<String> filterPicker;
 
     private Image image;
     private WritableImage writableImage;
@@ -52,7 +50,7 @@ public class Controller implements Initializable {
     private String format;
     private PictureFilter pictureFilter;
 
-    Logger logger = Logger.getLogger(Controller.class.getName());
+    private Logger logger = Logger.getLogger(Controller.class.getName());
 
     public void openFileManager(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
@@ -79,6 +77,7 @@ public class Controller implements Initializable {
         format = pictureFilter.getFormat(file.toPath());
 
         pathTextField.setText(file.getAbsolutePath());
+        actionEvent.consume();
     }
 
     @Override
@@ -95,7 +94,7 @@ public class Controller implements Initializable {
             if(image == null) return;
             /* Apply filter and display */
             writableImage = new WritableImage((int)image.getWidth(), (int)image.getHeight());
-            filter = filterFactory.getFilter(newValue.toString());
+            filter = filterFactory.getFilter(newValue);
             filter.applyFilter(image, writableImage);
             afterImageView.setImage(writableImage);
         });
@@ -105,9 +104,10 @@ public class Controller implements Initializable {
 
     public void writeImageToDisk(ActionEvent actionEvent) {
         pictureFilter.writeImageToDisk(pathTextField.getText().trim(), writableImage, format, "");
+        actionEvent.consume();
     }
 
-    void bindImageViews(){
+    private void bindImageViews(){
         Scene scene = rootBox.getScene();
         beforeImageView.fitWidthProperty().bind(scene.widthProperty());
         beforeImageView.fitHeightProperty().bind(scene.heightProperty());

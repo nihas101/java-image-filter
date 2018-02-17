@@ -1,12 +1,12 @@
 package de.nihas101.pictureFilter.filters.filters3x3;
 
-import de.nihas101.pictureFilter.filters.ColorSum;
 import de.nihas101.pictureFilter.filters.Filter;
+import de.nihas101.pictureFilter.filters.utils.ColorSum;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
-import static java.lang.Math.*;
+import static java.lang.Math.ceil;
 
 public class BlurFilter3x3 extends PixelIterator3x3 implements Filter {
     @Override
@@ -32,7 +32,7 @@ public class BlurFilter3x3 extends PixelIterator3x3 implements Filter {
     }
 
     @Override
-    public String getFilterName() { return "blur3x3"; }
+    public String getFilterName() { return "Blur 3x3"; }
 
     private Color averageOfColors(Color... colors){
         ColorSum colorSum = new ColorSum();

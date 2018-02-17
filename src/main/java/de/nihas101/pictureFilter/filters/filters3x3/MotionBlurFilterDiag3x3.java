@@ -2,8 +2,6 @@ package de.nihas101.pictureFilter.filters.filters3x3;
 
 import de.nihas101.pictureFilter.filters.Filter;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -51,5 +49,5 @@ public class MotionBlurFilterDiag3x3 extends PixelIterator3x3 implements Filter 
     }
 
     @Override
-    public String getFilterName() { return "motionBlurDiag3x3"; }
+    public String getFilterName() { return "Motionblur Diagonal 3x3"; }
 }

@@ -9,6 +9,7 @@ import de.nihas101.pictureFilter.filters.filtersNxN.SNESMosaicFilter;
 import de.nihas101.pictureFilter.filters.mirrorFilters.*;
 import de.nihas101.pictureFilter.filters.pixelFilters.GrayScaleFilter;
 import de.nihas101.pictureFilter.filters.pixelFilters.InvertFilter;
+import de.nihas101.pictureFilter.filters.utils.FilterNotFoundError;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,8 +26,7 @@ public class FilterFactory {
     public Filter getFilter(String filterString){
         Filter filter = filterHashMap.getOrDefault(filterString.toLowerCase(), null);
         if(filter == null) throw new FilterNotFoundError(filterString);
-
-        return filter;
+        else return filter;
     }
 
     private void addAllFilters(){
@@ -34,7 +34,6 @@ public class FilterFactory {
         Filter blurFilter3x3 = new BlurFilter3x3();
         Filter blurFilter5x5 = new BlurFilter5X5();
         Filter motionBlurFilterDiag3x3 = new MotionBlurFilterDiag3x3();
-        //Filter motionBlurFilterDiag5x5 = new MotionBlurFilterDiag5x5();
 
         Filter mhFilter = new MirrorHorizontal();
         Filter mvFilter = new MirrorVertical();

@@ -3,8 +3,6 @@ package de.nihas101.pictureFilter.filters.mirrorFilters;
 import de.nihas101.pictureFilter.filters.Filter;
 import de.nihas101.pictureFilter.filters.pixelFilters.PixelIterator;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -25,5 +23,5 @@ public class MirrorHorizontal extends PixelIterator implements Filter {
     }
 
     @Override
-    public String getFilterName() { return "mirrorHorizontal"; }
+    public String getFilterName() { return "Mirror horizontal"; }
 }

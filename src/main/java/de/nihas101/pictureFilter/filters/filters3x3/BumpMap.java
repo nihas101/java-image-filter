@@ -13,5 +13,5 @@ public class BumpMap extends PixelIterator3x3 implements Filter {
     }
 
     @Override
-    public String getFilterName() { return "bumpMap"; }
+    public String getFilterName() { return "Bump map"; }
 }

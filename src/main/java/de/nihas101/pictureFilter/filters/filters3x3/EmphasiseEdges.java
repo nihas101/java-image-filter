@@ -2,8 +2,6 @@ package de.nihas101.pictureFilter.filters.filters3x3;
 
 import de.nihas101.pictureFilter.filters.Filter;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -61,6 +59,6 @@ public class EmphasiseEdges extends PixelIterator3x3 implements Filter {
 
     @Override
     public String getFilterName() {
-        return "emphasiseEdges";
+        return "Emphasise edges";
     }
 }

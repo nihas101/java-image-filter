@@ -2,8 +2,6 @@ package de.nihas101.pictureFilter.filters.pixelFilters;
 
 import de.nihas101.pictureFilter.filters.Filter;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -29,5 +27,5 @@ public class GrayScaleFilter extends PixelIterator implements Filter {
     }
 
     @Override
-    public String getFilterName() { return "grayScale"; }
+    public String getFilterName() { return "Grayscale"; }
 }

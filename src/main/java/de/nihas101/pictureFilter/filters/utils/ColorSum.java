@@ -1,4 +1,4 @@
-package de.nihas101.pictureFilter.filters;
+package de.nihas101.pictureFilter.filters.utils;
 
 import javafx.scene.paint.Color;
 

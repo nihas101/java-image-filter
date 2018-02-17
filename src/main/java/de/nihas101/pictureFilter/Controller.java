@@ -2,7 +2,6 @@ package de.nihas101.pictureFilter;
 
 import de.nihas101.pictureFilter.filters.Filter;
 import de.nihas101.pictureFilter.filters.FilterFactory;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +27,7 @@ import java.util.logging.Logger;
 
 import static java.lang.String.CASE_INSENSITIVE_ORDER;
 import static javafx.collections.FXCollections.observableArrayList;
+import static javafx.embed.swing.SwingFXUtils.toFXImage;
 
 public class Controller implements Initializable {
     @FXML

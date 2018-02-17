@@ -2,8 +2,6 @@ package de.nihas101.pictureFilter.filters.filtersNxN;
 
 import de.nihas101.pictureFilter.filters.Filter;
 import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
@@ -45,6 +43,6 @@ public class FindEdges extends PixelIterator5x5 implements Filter {
 
     @Override
     public String getFilterName() {
-        return "findEdges";
+        return "Find edges";
     }
 }

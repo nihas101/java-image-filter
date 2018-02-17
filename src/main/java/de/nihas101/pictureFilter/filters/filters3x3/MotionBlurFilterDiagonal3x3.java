@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 
 import static java.lang.Math.*;
 
-public class MotionBlurFilterDiag3x3 extends PixelIterator3x3 implements Filter {
+public class MotionBlurFilterDiagonal3x3 extends PixelIterator3x3 implements Filter {
 
     @Override
     public void applyFilter(Image image, WritableImage writableImage) {

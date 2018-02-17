@@ -33,21 +33,32 @@ public class EmbossFilter extends PixelIterator3x3 implements Filter {
     }
 
     private Color emboss(Color color1, Color color2, Color color3, Color color4, Color color5, Color color6) {
-
         double bias = .5;
 
-        double red = - color1.getRed() - color2.getRed() - color3.getRed()
-                     + color4.getRed() + color5.getRed() + color6.getRed() + bias;
-        double green = - color1.getGreen() - color2.getGreen() - color3.getGreen()
-                        + color4.getGreen() + color5.getGreen() + color6.getGreen() + bias;
-        double blue  = - color1.getBlue() - color2.getBlue() - color3.getBlue()
-                        + color4.getBlue() + color5.getBlue() + color6.getBlue() + bias;
+        double red = emboss(new double[]{
+                color1.getRed(), color2.getRed(), color3.getRed(),
+                color4.getRed(), color5.getRed(), color6.getRed()
+            }, bias);
+
+        double green = emboss(new double[]{
+                color1.getGreen(), color2.getGreen(), color3.getGreen(),
+                color4.getGreen(), color5.getGreen(), color6.getGreen()
+            }, bias);
+
+        double blue  = emboss(new double[]{
+                color1.getBlue(), color2.getBlue(), color3.getBlue(),
+                color4.getBlue(), color5.getBlue(), color6.getBlue()
+            }, bias);
 
         red  = min(max(red, 0),1);
         green = min(max(green, 0),1);
         blue = min(max(blue, 0),1);
 
         return Color.color(red,green,blue);
+    }
+
+    private double emboss(double[] colors , double bias){
+        return - colors[0] - colors[1] - colors[2] + colors[3] + colors[4] + colors[5] + bias;
     }
 
     @Override

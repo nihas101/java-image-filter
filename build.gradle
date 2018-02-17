@@ -6,8 +6,8 @@ apply plugin: 'application'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 /* Application */
-mainClassName = 'de.nihas101.pictureFilter.PictureFilterGUI'
-archivesBaseName = 'PictureFilter'
+mainClassName = 'de.nihas101.simpleImageFilter.ImageFilterGUI'
+archivesBaseName = 'SimpleImageFilter'
 version = '1.0-SNAPSHOT'
 
 /* dependencies */
@@ -24,7 +24,7 @@ dependencies {
 }
 
 jar {
-    baseName = 'PictureFilter'
+    baseName = 'ImageFilter'
 }
 
 test {

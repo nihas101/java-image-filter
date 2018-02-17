@@ -15,4 +15,4 @@ include 'api'
 include 'services:webservice'
 */
 /* Name of project and description */
-rootProject.name = 'pictureFilter'
+rootProject.name = 'simpleImageFilter'

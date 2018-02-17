@@ -1,4 +1,4 @@
-# ImageFilter [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/nihas101/java-image-filter.svg)](https://travis-ci.org/nihas101/java-image-filter) [![Maintainability](https://api.codeclimate.com/v1/badges/52ccb942b49b280b5f97/maintainability)](https://codeclimate.com/github/nihas101/java-image-filter/maintainability)
+# SimpleImageFilter [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/nihas101/java-image-filter.svg)](https://travis-ci.org/nihas101/java-image-filter) [![Maintainability](https://api.codeclimate.com/v1/badges/52ccb942b49b280b5f97/maintainability)](https://codeclimate.com/github/nihas101/java-image-filter/maintainability)
 
 A small java program which applies simple filters to images.
 
@@ -25,9 +25,9 @@ The distribution is placed under `build/distributions`.
 
 To run the program from the distribution, extract the zip or tar file, and run the launch script for your system in the bin folder, by typing:
 ```sh
-./pictureFilter
+./simpleImageFilter
 ```
-into the command-line interface.
+into the command-line interface or double-clicking the executable.
 
 ## Examples
 

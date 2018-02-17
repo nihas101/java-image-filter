@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static javafx.scene.paint.Color.color;
 
 public class SharpenFilter extends PixelIterator3x3 implements Filter {
     @Override
@@ -39,23 +40,27 @@ public class SharpenFilter extends PixelIterator3x3 implements Filter {
 
     private Color sharpen(Color color1, Color color2, Color color3, Color color4,
                           Color color5, Color color6, Color color7, Color color8, Color color9) {
-        double red   =  - color1.getRed() -   color2.getRed() - color3.getRed()
-                        - color4.getRed() + 9*color5.getRed() - color6.getRed()
-                        - color7.getRed() -   color8.getRed() - color9.getRed();
+        double red   =  sharpen(new double[]{color1.getRed(), color2.getRed(), color3.getRed(),
+                                                color4.getRed(), color5.getRed(), color6.getRed(),
+                                                color7.getRed(), color8.getRed(), color9.getRed()});
 
-        double green  =  - color1.getGreen() -   color2.getGreen() - color3.getGreen()
-                        - color4.getGreen() + 9*color5.getGreen() - color6.getGreen()
-                        - color7.getGreen() -   color8.getGreen() - color9.getGreen();
+        double green  = sharpen(new double[]{color1.getGreen(), color2.getGreen(), color3.getGreen(),
+                                                color4.getGreen(), color5.getGreen(), color6.getGreen(),
+                                                color7.getGreen(), color8.getGreen(), color9.getGreen()});
 
-        double blue =  - color1.getBlue() -   color2.getBlue() - color3.getBlue()
-                        - color4.getBlue() + 9*color5.getBlue() - color6.getBlue()
-                        - color7.getBlue() -   color8.getBlue() - color9.getBlue();
+        double blue = sharpen(new double[]{ color1.getBlue(), color2.getBlue(), color3.getBlue(),
+                                                color4.getBlue(), color5.getBlue(), color6.getBlue(),
+                                                color7.getBlue(), color8.getBlue(), color9.getBlue()});
 
         red  = min(max(red, 0),1);
         green = min(max(green, 0),1);
         blue = min(max(blue, 0),1);
 
-        return Color.color(red,green,blue);
+        return color(red,green,blue);
+    }
+
+    private double sharpen(double[] color){
+        return - color[0] - color[1] - color[2] - color[3] + 9*color[4] - color[5] - color[6] - color[7] - color[8];
     }
 
     @Override

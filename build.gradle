@@ -8,7 +8,7 @@ targetCompatibility = '1.8'
 /* Application */
 mainClassName = 'de.nihas101.simpleImageFilter.ImageFilterGUI'
 archivesBaseName = 'SimpleImageFilter'
-version = '1.0-SNAPSHOT'
+version = '1.0.1-SNAPSHOT'
 
 /* dependencies */
 repositories {

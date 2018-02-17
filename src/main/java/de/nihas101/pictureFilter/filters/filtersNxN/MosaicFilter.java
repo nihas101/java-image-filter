@@ -1,6 +1,7 @@
 package de.nihas101.pictureFilter.filters.filtersNxN;
 
 import de.nihas101.pictureFilter.filters.Filter;
+import de.nihas101.pictureFilter.filters.utils.ColorSum;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
@@ -17,25 +18,21 @@ public class MosaicFilter extends PixelIterator5x5 implements Filter {
                 (x, y) ->{
                     /* Get average of colors */
                     Color color = averageOfColors(x,y, pixelReader);
-
-                    /* Apply color to whole square */
-                    for(int i=1 ; i < x.length ; i++) {
-                        pixelWriter.setColor(x[i], y[i], color);
-                    }
+                    applyToSquare(x, y, color);
                 });
     }
 
+    protected void applyToSquare(int[] x, int[] y, Color color){
+        for(int i=1 ; i < x.length ; i++) pixelWriter.setColor(x[i], y[i], color);
+    }
+
     private Color averageOfColors(int[] xs, int[] ys, PixelReader pixelReader){
-        double red = 0;
-        double blue = 0;
-        double green = 0;
+        ColorSum colorSum = new ColorSum();
 
         for (int x : xs) {
             for (int y : ys) {
                 Color color = pixelReader.getColor(x,y);
-                red   += color.getRed();
-                blue  += color.getBlue();
-                green += color.getGreen();
+                colorSum.add(color);
             }
         }
 
@@ -46,11 +43,11 @@ public class MosaicFilter extends PixelIterator5x5 implements Filter {
 
         int nrOfEle = xs.length * ys.length;
 
-        red = min(max(red/nrOfEle,0),1);
-        green = min(max(green/nrOfEle,0),1);
-        blue = min(max(blue/nrOfEle,0),1);
+        colorSum.setRed(min(max(colorSum.getRed()/nrOfEle,0),1));
+        colorSum.setGreen(min(max(colorSum.getGreen()/nrOfEle,0),1));
+        colorSum.setBlue(min(max(colorSum.getBlue()/nrOfEle,0),1));
 
-        return new Color(red, green, blue, opacity);
+        return new Color(colorSum.getRed(), colorSum.getGreen(), colorSum.getBlue(), opacity);
     }
 
     @Override

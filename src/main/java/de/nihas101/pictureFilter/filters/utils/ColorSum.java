@@ -36,4 +36,16 @@ public class ColorSum {
     public double getGreen() {
         return green;
     }
+
+    public void setRed(double red) {
+        this.red = red;
+    }
+
+    public void setGreen(double green) {
+        this.green = green;
+    }
+
+    public void setBlue(double blue) {
+        this.blue = blue;
+    }
 }

@@ -1,5 +1,6 @@
 package de.nihas101.pictureFilter.filters.filtersNxN;
 
+import de.nihas101.pictureFilter.filters.ColorSum;
 import de.nihas101.pictureFilter.filters.Filter;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
@@ -39,21 +40,13 @@ public class BlurFilter5X5 extends PixelIterator5x5 implements Filter {
     public String getFilterName() { return "blur5x5"; }
 
     private Color averageOfColors(Color... colors){
-        double red = 0;
-        double blue = 0;
-        double green = 0;
+        ColorSum colorSum = new ColorSum();
 
-        for (Color color : colors) {
-            red   += color.getRed();
-            blue  += color.getBlue();
-            green += color.getGreen();
-        }
+        for (Color color : colors) colorSum.add(color);
 
         int middle = (int) ceil(colors.length/((double)2));
-        red = min(max(red/9,0),1);
-        green = min(max(green/9,0),1);
-        blue = min(max(blue/9,0),1);
+        colorSum.avarageColors();
 
-        return new Color(red, green, blue, colors[middle].getOpacity());
+        return new Color(colorSum.getRed(), colorSum.getGreen(), colorSum.getBlue(), colors[middle].getOpacity());
     }
 }

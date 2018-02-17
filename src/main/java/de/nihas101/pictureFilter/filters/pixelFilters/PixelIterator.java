@@ -24,14 +24,16 @@ public abstract class PixelIterator {
     }
 
     public void rowWise(double imageHeight, double imageWidth, PixelByPixelFilter pixelByPixelFilter){
-        for(int y=0 ; y < imageHeight ; y++) {
-            for (int x = 0; x < imageWidth; x++) pixelByPixelFilter.apply(x, y);
-        }
+        iterateThroughAllPixels((int)imageHeight, (int)imageWidth, (y,x) -> pixelByPixelFilter.apply(x,y));
     }
 
-    public void columnWise(int imageHeight, int imageWidth, PixelByPixelFilter pixelByPixelFilter){
-        for (int x = 0; x < imageWidth; x++) {
-            for(int y=0 ; y < imageHeight ; y++) pixelByPixelFilter.apply(x, y);
+    public void columnWise(double imageHeight, double imageWidth, PixelByPixelFilter pixelByPixelFilter){
+        iterateThroughAllPixels((int)imageWidth, (int)imageHeight, pixelByPixelFilter::apply);
+    }
+
+    private void iterateThroughAllPixels(int outerLimit, int innerLimit, PixelFilter pixelFilter){
+        for (int x = 0; x < outerLimit; x++) {
+            for(int y=0 ; y < innerLimit ; y++) pixelFilter.apply(x, y);
         }
     }
 

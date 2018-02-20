@@ -11,12 +11,12 @@ public class MirrorHorizontalTop extends PixelIterator implements Filter {
     public void applyFilter(Image image, WritableImage writableImage) {
         setup(image, writableImage);
 
-        columnOutwards(imageHeight, imageWidth, (x1,y1,x2,y2) ->{
-            Color color = pixelReader.getColor(x1,y1);
+        columnOutwards(imageHeight, imageWidth, (x1, y1, x2, y2) -> {
+            Color color = pixelReader.getColor(x1, y1);
 
             /* Set new color */
-            pixelWriter.setColor(x1,y1,color);
-            pixelWriter.setColor(x2,y2,color);
+            pixelWriter.setColor(x1, y1, color);
+            pixelWriter.setColor(x2, y2, color);
         });
     }
 

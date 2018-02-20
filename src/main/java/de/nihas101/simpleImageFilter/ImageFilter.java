@@ -35,7 +35,7 @@ public class ImageFilter {
     }
 
     private void filterImage(String[] args) throws FileNotFoundException, NotEnoughArgumentsException {
-        if(args.length < 2) throw new NotEnoughArgumentsException();
+        if (args.length < 2) throw new NotEnoughArgumentsException();
 
         String fileArg = args[0];
         String filterArg = args[1];
@@ -43,7 +43,7 @@ public class ImageFilter {
 
         /* Check if file exists */
         Path imagePath = get(fileArg);
-        if( !exists(get(fileArg)) && !isDirectory(get(fileArg)) )
+        if (!exists(get(fileArg)) && !isDirectory(get(fileArg)))
             throw new FileNotFoundException("The File " + args[0] + " was not found or is a directory");
 
         image = loadImage(fileArg, imagePath);
@@ -57,17 +57,21 @@ public class ImageFilter {
 
     /**
      * Returns the format of the image
+     *
      * @param path The path to the image
      * @return The images format
      */
-    private static String getImageFormat(Path path){
-        try { return probeContentType(path); }
-        catch (IOException e) { logger.severe(e.getMessage()); }
+    private static String getImageFormat(Path path) {
+        try {
+            return probeContentType(path);
+        } catch (IOException e) {
+            logger.severe(e.getMessage());
+        }
 
         return "";
     }
 
-    private Image loadImage(String fileArg, Path imagePath){
+    private Image loadImage(String fileArg, Path imagePath) {
         /* Load the image */
         Image image = new Image("file:" + fileArg);
         /* Extract format */
@@ -75,7 +79,7 @@ public class ImageFilter {
         return image;
     }
 
-    public Image loadImage(URI uri){
+    public Image loadImage(URI uri) {
         /* Load the image */
         Image image = new Image(uri.toString());
         /* Extract format */
@@ -83,12 +87,12 @@ public class ImageFilter {
         return image;
     }
 
-    public String getFormat(Path imagePath){
+    public String getFormat(Path imagePath) {
         format = getImageFormat(imagePath);
-        return format.substring(format.indexOf("/")+1);
+        return format.substring(format.indexOf("/") + 1);
     }
 
-    public Image applyFilter(Filter filter, Image image){
+    public Image applyFilter(Filter filter, Image image) {
         /* Create WritableImage */
         WritableImage writableImage = new WritableImage((int) image.getWidth(), (int) image.getHeight());
 
@@ -97,7 +101,7 @@ public class ImageFilter {
         return writableImage;
     }
 
-    public void writeImageToDisk(String fileArg, Image image, String format, String fileNameAddition){
+    public void writeImageToDisk(String fileArg, Image image, String format, String fileNameAddition) {
         boolean write = false;
         BufferedImage bufferedImage;
 
@@ -107,24 +111,28 @@ public class ImageFilter {
 
         File file = new File(newFileName);
 
-        if("jpeg".equals(format)) bufferedImage = createBufferedImageFromJPG(image);
+        if ("jpeg".equals(format)) bufferedImage = createBufferedImageFromJPG(image);
         else bufferedImage = createBufferedImage(image);
 
-        try { write = write(bufferedImage, format, file); }
-        catch (IOException e) { logger.severe(e.getMessage()); }
+        try {
+            write = write(bufferedImage, format, file);
+        } catch (IOException e) {
+            logger.severe(e.getMessage());
+        }
 
-        if(!write) out.println("Saving the image failed");
+        if (!write) out.println("Saving the image failed");
         else out.println("Image saved under: " + newFileName);
     }
 
     /**
      * Hack to remove alpha from JPG images, otherwise they are tinted pink
+     *
      * @param image The image to convert to JPG without alpa
      * @return The image without alpha values
      */
-    private BufferedImage createBufferedImageFromJPG(Image image){
+    private BufferedImage createBufferedImageFromJPG(Image image) {
         BufferedImage newImage = fromFXImage(image, null);
-        BufferedImage imageRGB = new BufferedImage((int)image.getWidth(), (int)image.getHeight(), BufferedImage.OPAQUE);
+        BufferedImage imageRGB = new BufferedImage((int) image.getWidth(), (int) image.getHeight(), BufferedImage.OPAQUE);
 
         Graphics2D graphics = imageRGB.createGraphics();
         graphics.drawImage(newImage, 0, 0, null);

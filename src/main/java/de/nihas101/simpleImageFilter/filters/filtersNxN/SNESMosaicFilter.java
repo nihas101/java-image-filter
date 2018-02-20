@@ -10,9 +10,9 @@ public class SNESMosaicFilter extends MosaicFilter {
         setup(image, writableImage);
 
         squareRowWise(imageHeight, imageWidth,
-                (x, y) ->{
+                (x, y) -> {
                     /* Get top-left color */
-                    Color color = pixelReader.getColor(x[0],y[0]);
+                    Color color = pixelReader.getColor(x[0], y[0]);
                     applyToSquare(x, y, color);
                 });
     }

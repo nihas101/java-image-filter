@@ -5,51 +5,64 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<VBox fx:id="rootBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.nihas101.simpleImageFilter.Controller">
-   <children>
-      <HBox alignment="CENTER" minWidth="600.0" prefHeight="25.0" VBox.vgrow="NEVER">
-         <children>
-            <Button fx:id="loadImageButton" alignment="CENTER" mnemonicParsing="false" onAction="#openFileManager" prefHeight="25.0" prefWidth="163.0" text="Load Image" textAlignment="CENTER" HBox.hgrow="NEVER">
-               <font>
-                  <Font name="SansSerif Regular" size="12.0" />
-               </font>
-            </Button>
-            <ChoiceBox fx:id="filterPicker" prefHeight="25.0" prefWidth="1151.0" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
-      <GridPane alignment="CENTER" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="346.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
-        </rowConstraints>
-         <children>
-            <Label alignment="CENTER" prefHeight="30.0" prefWidth="601.0" text="Before" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-            <Label alignment="CENTER" prefHeight="30.0" prefWidth="601.0" text="After" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
-            <BorderPane GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-               <center>
-                  <ImageView fx:id="beforeImageView" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5" scaleZ="0.5" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                  </ImageView>
-               </center>
-            </BorderPane>
-            <BorderPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-               <center>
-                  <ImageView fx:id="afterImageView" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5" scaleZ="0.5" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-         </children>
-      </GridPane>
-      <HBox prefHeight="29.0" prefWidth="600.0">
-         <children>
-            <TextField fx:id="pathTextField" prefHeight="29.0" prefWidth="1107.0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#writeImageToDisk" prefHeight="63.0" prefWidth="95.0" text="Save Image" HBox.hgrow="NEVER" />
-         </children>
-      </HBox>
-   </children>
+<VBox fx:id="rootBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="de.nihas101.simpleImageFilter.Controller">
+    <children>
+        <HBox alignment="CENTER" minWidth="600.0" prefHeight="25.0" VBox.vgrow="NEVER">
+            <children>
+                <Button fx:id="loadImageButton" alignment="CENTER" mnemonicParsing="false" onAction="#openFileManager"
+                        prefHeight="25.0" prefWidth="163.0" text="Load Image" textAlignment="CENTER" HBox.hgrow="NEVER">
+                    <font>
+                        <Font name="SansSerif Regular" size="12.0"/>
+                    </font>
+                </Button>
+                <ChoiceBox fx:id="filterPicker" prefHeight="25.0" prefWidth="1151.0" HBox.hgrow="ALWAYS"/>
+            </children>
+        </HBox>
+        <GridPane alignment="CENTER" gridLinesVisible="true" maxHeight="1.7976931348623157E308"
+                  maxWidth="1.7976931348623157E308" prefHeight="346.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS"/>
+            </rowConstraints>
+            <children>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="601.0" text="Before" GridPane.halignment="CENTER"
+                       GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER"/>
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="601.0" text="After" GridPane.columnIndex="1"
+                       GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER"
+                       GridPane.vgrow="NEVER"/>
+                <BorderPane GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1"
+                            GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                    <center>
+                        <ImageView fx:id="beforeImageView" pickOnBounds="true" preserveRatio="true" scaleX="0.5"
+                                   scaleY="0.5" scaleZ="0.5" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets/>
+                            </BorderPane.margin>
+                        </ImageView>
+                    </center>
+                </BorderPane>
+                <BorderPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS"
+                            GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                    <center>
+                        <ImageView fx:id="afterImageView" pickOnBounds="true" preserveRatio="true" scaleX="0.5"
+                                   scaleY="0.5" scaleZ="0.5" BorderPane.alignment="CENTER"/>
+                    </center>
+                </BorderPane>
+            </children>
+        </GridPane>
+        <HBox prefHeight="29.0" prefWidth="600.0">
+            <children>
+                <TextField fx:id="pathTextField" prefHeight="29.0" prefWidth="1107.0" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                        onAction="#writeImageToDisk" prefHeight="63.0" prefWidth="95.0" text="Save Image"
+                        HBox.hgrow="NEVER"/>
+            </children>
+        </HBox>
+    </children>
 </VBox>

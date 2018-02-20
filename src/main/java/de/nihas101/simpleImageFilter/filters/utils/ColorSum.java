@@ -12,17 +12,17 @@ public class ColorSum {
     private double green = 0;
     private int nrOfAdditions = 0;
 
-    public void add(Color color){
-        red   += color.getRed();
-        blue  += color.getBlue();
+    public void add(Color color) {
+        red += color.getRed();
+        blue += color.getBlue();
         green += color.getGreen();
         nrOfAdditions++;
     }
 
-    public void avarageColors(){
-        red = min(max(red/nrOfAdditions,0),1);
-        green = min(max(green/nrOfAdditions,0),1);
-        blue = min(max(blue/nrOfAdditions,0),1);
+    public void avarageColors() {
+        red = min(max(red / nrOfAdditions, 0), 1);
+        green = min(max(green / nrOfAdditions, 0), 1);
+        blue = min(max(blue / nrOfAdditions, 0), 1);
     }
 
     public double getRed() {

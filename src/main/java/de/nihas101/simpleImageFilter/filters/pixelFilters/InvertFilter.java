@@ -14,7 +14,7 @@ public class InvertFilter extends PixelIterator implements Filter {
         setup(image, writableImage);
 
         rowWise(imageHeight, imageWidth, (x, y) -> {
-            Color color = pixelReader.getColor(x,y);
+            Color color = pixelReader.getColor(x, y);
 
             /* Invert colors */
             double red = 1 - color.getRed();
@@ -22,14 +22,14 @@ public class InvertFilter extends PixelIterator implements Filter {
             double blue = 1 - color.getBlue();
 
             /* Make sure values are in range */
-            red = min(max(0,red),1);
-            green = min(max(0,green),1);
-            blue = min(max(0,blue),1);
+            red = min(max(0, red), 1);
+            green = min(max(0, green), 1);
+            blue = min(max(0, blue), 1);
 
             Color grayColor = new Color(red, green, blue, color.getOpacity());
 
             /* Set new color */
-            pixelWriter.setColor(x,y,grayColor);
+            pixelWriter.setColor(x, y, grayColor);
         });
     }
 

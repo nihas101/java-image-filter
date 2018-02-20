@@ -7,11 +7,13 @@ import javafx.scene.image.WritableImage;
 
 public class BumpMap extends PixelIterator3x3 implements Filter {
     @Override
-    public void applyFilter(Image image, WritableImage writableImage){
+    public void applyFilter(Image image, WritableImage writableImage) {
         new EmbossFilter().applyFilter(image, writableImage);
         new GrayScaleFilter().applyFilter(writableImage, writableImage);
     }
 
     @Override
-    public String getFilterName() { return "Bump map"; }
+    public String getFilterName() {
+        return "Bump map";
+    }
 }

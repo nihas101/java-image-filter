@@ -62,18 +62,21 @@ public class Controller implements Initializable {
 
         File file = fileChooser.showOpenDialog(null);
 
-        if(file != null){
+        if (file != null) {
             filterPicker.getSelectionModel().clearSelection();
             afterImageView.setImage(null);
-            try {bufferedImage = ImageIO.read(file); }
-            catch (IOException e) { logger.severe(e.getMessage()); }
-        }else return;
+            try {
+                bufferedImage = ImageIO.read(file);
+            } catch (IOException e) {
+                logger.severe(e.getMessage());
+            }
+        } else return;
 
-        if(bufferedImage != null){
+        if (bufferedImage != null) {
             image = toFXImage(bufferedImage, null);
             beforeImageView.setImage(image);
             bindImageViews();
-        }else return;
+        } else return;
 
         format = imageFilter.getFormat(file.toPath());
 
@@ -85,16 +88,16 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList<String> filters = new ArrayList<>();
 
-        filterFactory.getFilters().forEach( filter -> filters.add(filter.getFilterName()) );
+        filterFactory.getFilters().forEach(filter -> filters.add(filter.getFilterName()));
 
         filters.sort(CASE_INSENSITIVE_ORDER);
 
-        filterPicker.setItems( observableArrayList(filters) );
+        filterPicker.setItems(observableArrayList(filters));
 
         filterPicker.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(image == null || newValue == null) return;
+            if (image == null || newValue == null) return;
             /* Apply filter and display */
-            writableImage = new WritableImage((int)image.getWidth(), (int)image.getHeight());
+            writableImage = new WritableImage((int) image.getWidth(), (int) image.getHeight());
             filter = filterFactory.getFilter(newValue);
             filter.applyFilter(image, writableImage);
             afterImageView.setImage(writableImage);
@@ -108,7 +111,7 @@ public class Controller implements Initializable {
         actionEvent.consume();
     }
 
-    private void bindImageViews(){
+    private void bindImageViews() {
         Scene scene = rootBox.getScene();
         beforeImageView.fitWidthProperty().bind(scene.widthProperty());
         beforeImageView.fitHeightProperty().bind(scene.heightProperty());

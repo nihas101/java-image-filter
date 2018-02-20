@@ -18,18 +18,18 @@ public class FilterFactory {
 
     private HashMap<String, Filter> filterHashMap;
 
-    public FilterFactory(HashMap<String, Filter> filterHashMap){
+    public FilterFactory(HashMap<String, Filter> filterHashMap) {
         this.filterHashMap = filterHashMap;
         addAllFilters();
     }
 
-    public Filter getFilter(String filterString){
+    public Filter getFilter(String filterString) {
         Filter filter = filterHashMap.getOrDefault(filterString.toLowerCase(), null);
-        if(filter == null) throw new FilterNotFoundError(filterString);
+        if (filter == null) throw new FilterNotFoundError(filterString);
         else return filter;
     }
 
-    private void addAllFilters(){
+    private void addAllFilters() {
         Filter bwFilter = new GrayScaleFilter();
         Filter blurFilter3x3 = new BlurFilter3x3();
         Filter blurFilter5x5 = new BlurFilter5X5();
@@ -54,7 +54,7 @@ public class FilterFactory {
         MosaicFilter mosaicFilter = new MosaicFilter();
 
         this.filterHashMap.put(bwFilter.getFilterName().toLowerCase(), bwFilter);
-        this.filterHashMap.put(blurFilter3x3.getFilterName().toLowerCase(),  blurFilter3x3);
+        this.filterHashMap.put(blurFilter3x3.getFilterName().toLowerCase(), blurFilter3x3);
         this.filterHashMap.put(blurFilter5x5.getFilterName().toLowerCase(), blurFilter5x5);
         this.filterHashMap.put(motionBlurFilterDiagonal3x3.getFilterName().toLowerCase(), motionBlurFilterDiagonal3x3);
 
@@ -77,5 +77,7 @@ public class FilterFactory {
         this.filterHashMap.put(mosaicFilter.getFilterName().toLowerCase(), mosaicFilter);
     }
 
-    public Collection<Filter> getFilters(){ return this.filterHashMap.values(); }
+    public Collection<Filter> getFilters() {
+        return this.filterHashMap.values();
+    }
 }
